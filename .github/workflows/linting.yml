@@ -1,0 +1,13 @@
+---
+name: linting
+on:  # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo make SPEC_FILE=SPECS/*.spec lint_in_docker
