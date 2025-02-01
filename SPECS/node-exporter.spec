@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+%define _rpmdir %{_topdir}/RPMS/prometheus
 
 Name: node-exporter
 Version: 1.8.2
