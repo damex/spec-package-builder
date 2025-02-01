@@ -9,6 +9,7 @@ License: ASL 2.0
 URL: https://www.kube-router.io
 Source: https://github.com/cloudnativelabs/kube-router/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
+BuildRequires: golang >= 1.22.0, golang < 1.23.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
