@@ -1,0 +1,28 @@
+---
+name: build
+on:  # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+
+jobs:
+  list_spec_files:
+    runs-on: ubuntu-24.04
+    outputs:
+      spec_files: ${{ steps.list_spec_files.outputs.spec_files }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list_spec_files
+        run: |
+          spec_files=$(ls SPECS/*.spec | jq -R . | jq -c -s .)
+          echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
+
+  build_in_docker:
+    name: ${{ matrix.spec_file }}
+    runs-on: ubuntu-24.04
+    needs: list_spec_files
+    strategy:
+      matrix:
+        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo make SPEC_FILE=${{ matrix.spec_file }} build_in_docker
