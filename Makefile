@@ -5,7 +5,7 @@ endif
 BUILD_DEPENDENCIES := rpmdevtools rpm-build dnf-utils
 LINT_DEPENDENCIES := rpmlint
 SOURCES_DIRECTORY := $(shell pwd)/SOURCES
-DOCKER_IMAGE_NAME := almalinux
+DOCKER_IMAGE_NAME := ghcr.io/almalinux/9-base
 DOCKER_IMAGE_TAG := 9
 DOCKER_WORK_DIRECTORY := /srv
 
