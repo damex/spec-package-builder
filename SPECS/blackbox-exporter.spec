@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+%define _rpmdir %{_topdir}/RPMS/prometheus
 
 Name: blackbox-exporter
 Version: 0.25.0
