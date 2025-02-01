@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+%define _rpmdir %{_topdir}/RPMS/kubernetes
 
 Name: kube-router
 Version: 2.4.1
