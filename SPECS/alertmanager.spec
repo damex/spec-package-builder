@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+%define _rpmdir %{_topdir}/RPMS/prometheus
 
 Name: alertmanager
 Version: 0.28.0
