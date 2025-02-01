@@ -1,0 +1,67 @@
+---
+name: lint_build_and_publish
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - production
+
+jobs:
+  list_spec_files:
+    runs-on: ubuntu-24.04
+    outputs:
+      spec_files: ${{ steps.list_spec_files.outputs.spec_files }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list_spec_files
+        run: |
+          spec_files=$(ls SPECS | jq -R . | jq -c -s .)
+          echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
+
+  lint:
+    runs-on: ubuntu-24.04
+    needs:
+      - list_spec_files
+    strategy:
+      matrix:
+        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} lint_in_docker
+
+  build:
+    runs-on: ubuntu-24.04
+    needs:
+      - list_spec_files
+      - lint
+    strategy:
+      matrix:
+        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} build_in_docker
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kubernetes-rpms-${{ matrix.spec_file }}
+          path: RPMS/kubernetes
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prometheus-rpms-${{ matrix.spec_file }}
+          path: RPMS/prometheus
+
+  publish:
+    runs-on: ubuntu-24.04
+    needs:
+      - build
+    strategy:
+      matrix:
+        repository:
+          - kubernetes
+          - prometheus
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ matrix.repository }}-rpms-*
+          merge-multiple: true
+          path: RPMS/${{ matrix.repository }}
+      - run: make SPEC_FILE=none YUM_REPOSITORIES_ACCESS_KEY=${{ secrets.YUM_REPOSITORIES_ACCESS_KEY }} YUM_REPOSITORIES_SECRET_KEY=${{ secrets.YUM_REPOSITORIES_SECRET_KEY }} YUM_REPOSITORIES_S3_ENDPOINT=${{ secrets.YUM_REPOSITORIES_S3_ENDPOINT }} YUM_REPOSITORIES_BUCKET_NAME=${{ secrets.YUM_REPOSITORIES_BUCKET_NAME }} YUM_REPOSITORY_NAME=${{ matrix.repository }} publish_in_docker
