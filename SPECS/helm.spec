@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+%define _rpmdir %{_topdir}/RPMS/kubernetes
 
 Name: helm
 Version: 3.16.4
