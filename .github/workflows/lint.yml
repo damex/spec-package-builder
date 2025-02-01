@@ -1,12 +1,11 @@
 ---
-name: linting
+name: lint
 on:  # yamllint disable-line rule:truthy
   - push
   - pull_request
 
 jobs:
-  lint:
-    name: lint
+  lint_in_docker:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
