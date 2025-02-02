@@ -56,7 +56,7 @@ cat <<EOF > %{buildroot}%{_sysconfdir}/blackbox-exporter/blackbox-exporter.yml
 ---
 EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/blackbox-exporter
-ARGS="--config.file=%{_sysconfdir}/blackbox-exporter/blackbox-exporter.yml"
+ARGUMENTS="--config.file=%{_sysconfdir}/blackbox-exporter/blackbox-exporter.yml"
 EOF
 
 %post
