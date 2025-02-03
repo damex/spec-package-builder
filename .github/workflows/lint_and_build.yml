@@ -1,8 +1,7 @@
 ---
-name: build
+name: lint_and_build
 on:  # yamllint disable-line rule:truthy
   - push
-  - pull_request
 
 jobs:
   list_spec_files:
@@ -16,10 +15,24 @@ jobs:
           spec_files=$(ls SPECS | jq -R . | jq -c -s .)
           echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
 
+  lint_in_docker:
+    name: ${{ matrix.spec_file }}
+    runs-on: ubuntu-24.04
+    needs:
+      - list_spec_files
+    strategy:
+      matrix:
+        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} lint_in_docker
+
   build_in_docker:
     name: ${{ matrix.spec_file }}
     runs-on: ubuntu-24.04
-    needs: list_spec_files
+    needs:
+      - list_spec_files
+      - lint_in_docker
     strategy:
       matrix:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
