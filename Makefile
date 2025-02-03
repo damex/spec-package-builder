@@ -4,6 +4,7 @@ endif
 
 BUILD_DEPENDENCIES := rpmdevtools rpm-build dnf-utils
 LINT_DEPENDENCIES := rpmlint
+PUBLISH_DEPENDENCIES := createrepo s3cmd
 SOURCES_DIRECTORY := $(shell pwd)/SOURCES
 DOCKER_IMAGE_NAME := ghcr.io/almalinux/9-base
 DOCKER_IMAGE_TAG := 9
@@ -16,7 +17,7 @@ define run_in_docker
 		--rm \
 		--tty \
 		$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) \
-		sh -c "dnf --assumeyes install make && make SPEC_FILE=$(SPEC_FILE) $(1)"
+		sh -c "dnf --assumeyes install make && make $(MAKEFLAGS) $(1)"
 endef
 
 default: build
@@ -31,11 +32,20 @@ lint: install_lint_dependencies lint_spec
 lint_in_docker:
 	@$(call run_in_docker, lint)
 
+publish: install_publish_dependencies create_yum_repository publish_yum_repository_to_s3
+
+publish_in_docker:
+	@$(call run_in_docker, publish)
+
 install_build_dependencies:
 	dnf --assumeyes install $(BUILD_DEPENDENCIES)
 
 install_lint_dependencies:
 	dnf --assumeyes install $(LINT_DEPENDENCIES)
+
+install_publish_dependencies:
+	dnf --assumeyes install epel-release
+	dnf --assumeyes install $(PUBLISH_DEPENDENCIES)
 
 lint_spec:
 	rpmlint $(SPEC_FILE)
@@ -48,3 +58,17 @@ install_spec_build_dependencies:
 
 build_package:
 	rpmbuild -bb --define "_topdir $(shell pwd)" $(SPEC_FILE)
+
+create_yum_repository:
+	createrepo --verbose RPMS/$(YUM_REPOSITORY_NAME)
+
+publish_yum_repository_to_s3:
+	s3cmd sync \
+		--host=$(YUM_REPOSITORIES_S3_ENDPOINT) \
+		--host-bucket="%(bucket)s.${YUM_REPOSITORIES_S3_ENDPOINT}" \
+		--access_key=${YUM_REPOSITORIES_ACCESS_KEY} \
+		--secret_key=${YUM_REPOSITORIES_SECRET_KEY} \
+		--acl-public \
+		--verbose \
+		RPMS/$(YUM_REPOSITORY_NAME) \
+		s3://${YUM_REPOSITORIES_BUCKET_NAME}/
