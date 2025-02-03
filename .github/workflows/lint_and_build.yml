@@ -15,8 +15,7 @@ jobs:
           spec_files=$(ls SPECS | jq -R . | jq -c -s .)
           echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
 
-  lint_in_docker:
-    name: ${{ matrix.spec_file }}
+  lint:
     runs-on: ubuntu-24.04
     needs:
       - list_spec_files
@@ -27,12 +26,11 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} lint_in_docker
 
-  build_in_docker:
-    name: ${{ matrix.spec_file }}
+  build:
     runs-on: ubuntu-24.04
     needs:
       - list_spec_files
-      - lint_in_docker
+      - lint
     strategy:
       matrix:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
