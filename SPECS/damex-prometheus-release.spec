@@ -1,5 +1,7 @@
 %define debug_package %{nil}
-%define _rpmdir %{_topdir}/RPMS/prometheus
+%define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
+%define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
+%define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
 
 Name: damex-prometheus-release
 Version: 0.1.0
@@ -21,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-prometheus.repo
 [damex-prometheus]
 name = damex-prometheus
-baseurl = https://yum-repositories.damex.org/prometheus
+baseurl = https://yum-repositories.damex.org/prometheus/%{disttype}/%{distnum}
 gpgcheck = 0
 EOF
 

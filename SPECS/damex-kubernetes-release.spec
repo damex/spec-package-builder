@@ -1,5 +1,8 @@
 %define debug_package %{nil}
-%define _rpmdir %{_topdir}/RPMS/kubernetes
+%define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
+%define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
+%define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
+
 
 Name: damex-kubernetes-release
 Version: 0.1.0
@@ -21,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-kubernetes.repo
 [damex-kubernetes]
 name = damex-kubernetes
-baseurl = https://yum-repositories.damex.org/kubernetes
+baseurl = https://yum-repositories.damex.org/kubernetes/%{disttype}/%{distnum}
 gpgcheck = 0
 EOF
 

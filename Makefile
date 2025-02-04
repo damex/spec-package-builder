@@ -9,6 +9,9 @@ SOURCES_DIRECTORY := $(shell pwd)/SOURCES
 DOCKER_IMAGE_NAME := ghcr.io/almalinux/9-base
 DOCKER_IMAGE_TAG := 9
 DOCKER_WORK_DIRECTORY := /srv
+REDHAT_DISTRIBUTION_TYPE ?= $(shell /usr/lib/rpm/redhat/dist.sh --disttype)
+REDHAT_DISTRIBUTION_VERSION ?= $(shell /usr/lib/rpm/redhat/dist.sh --distnum)
+REDHAT_DISTRIBUTION_ARCHITECTURE ?= $(shell /usr/bin/arch)
 
 define run_in_docker
 	docker run \
@@ -60,7 +63,7 @@ build_package:
 	rpmbuild -bb --define "_topdir $(shell pwd)" $(SPEC_FILE)
 
 create_yum_repository:
-	createrepo --verbose RPMS/$(YUM_REPOSITORY_NAME)
+	createrepo --verbose RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)
 
 publish_yum_repository_to_s3:
 	s3cmd sync \
