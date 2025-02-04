@@ -73,3 +73,12 @@ make SPEC_FILE=SPECS/my.spec lint_in_docker
 | kubectl              | kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | kubectl-convert      | kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | kubelet              | kubernetes | x86_64       | Red Hat Enterprise Linux 9|
+| alertmanager           | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| alertmanager-amtool    | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| blackbox-exporter      | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| node-exporter          | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| postgresql-exporter    | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| prometheus             | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| prometheus-promtool    | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| smartctl-exporter      | prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| systemd-exporter       | prometheus | x86_64       | Red Hat Enterprise Linux 9|
