@@ -1,6 +1,8 @@
 %define debug_package %{nil}
 %define cni_bindir /opt/cni/bin
-%define _rpmdir %{_topdir}/RPMS/kubernetes
+%define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
+%define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
+%define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
 
 Name: cni-plugins
 Version: 1.5.1
