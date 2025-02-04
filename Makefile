@@ -4,7 +4,7 @@ endif
 
 BUILD_DEPENDENCIES := rpmdevtools rpm-build dnf-utils
 LINT_DEPENDENCIES := rpmlint
-PUBLISH_DEPENDENCIES := createrepo s3cmd
+PUBLISH_DEPENDENCIES := createrepo redhat-rpm-config s3cmd
 SOURCES_DIRECTORY := $(shell pwd)/SOURCES
 DOCKER_IMAGE_NAME := ghcr.io/almalinux/9-base
 DOCKER_IMAGE_TAG := 9
