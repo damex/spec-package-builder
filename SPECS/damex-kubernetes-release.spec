@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-kubernetes.repo
 [damex-kubernetes]
 name = damex-kubernetes
-baseurl = https://yum-repositories.damex.org/kubernetes/%{disttype}/%{distnum}
+baseurl = https://yum-repositories.damex.org/kubernetes/%{disttype}/%{distnum}/%{_arch}
 gpgcheck = 0
 EOF
 

@@ -23,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-prometheus.repo
 [damex-prometheus]
 name = damex-prometheus
-baseurl = https://yum-repositories.damex.org/prometheus/%{disttype}/%{distnum}
+baseurl = https://yum-repositories.damex.org/prometheus/%{disttype}/%{distnum}/%{_arch}
 gpgcheck = 0
 EOF
 
