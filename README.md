@@ -4,9 +4,11 @@
 
 This repository contains spec files for building RPM packages.
 
-It includes a `Makefile` that builds packages natively on `Red Hat Linux` or its derivatives.
+It includes a `Makefile` that builds packages natively on `Red Hat Enterprise Linux` or its derivatives.
 
 The `Makefile` accepts `SPEC_FILE` as a mandatory input, allowing you to specify the path to the spec file included in the `SPECS` directory.
+
+Currently, packages and their corresponding spec files are built and tested only for `Red Hat Enterprise Linux 9` and its derivatives like `Alma Linux 9` and `Rocky Linux 9`.
 
 [Follow here if you want to build packages yourself](#Usage).
 
