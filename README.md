@@ -92,7 +92,6 @@ gpgcheck = 0
 | cni-plugins-ipam     | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | cni-plugins-main     | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | cni-plugins-meta     | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
-| cni-plugins          | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | etcd                 | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | etcd-benchmark       | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
 | etcd-dump-db         | damex-kubernetes | x86_64       | Red Hat Enterprise Linux 9|
