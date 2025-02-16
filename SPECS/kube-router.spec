@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
 
 Name: kube-router
-Version: 2.4.1
+Version: 2.5.0
 Release: 1%{?dist}
 Summary: a turnkey solution for Kubernetes networking
 License: ASL 2.0
