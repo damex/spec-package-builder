@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
 
 Name: kubernetes
-Version: 1.31.4
+Version: 1.31.6
 Release: 1%{?dist}
 Summary: open-source container orchestration system
 License: ASL 2.0
