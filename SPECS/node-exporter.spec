@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
 
 Name: node-exporter
-Version: 1.8.2
+Version: 1.9.0
 Release: 1%{?dist}
 Summary: Prometheus Node Exporter
 License: ASL 2.0
