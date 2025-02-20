@@ -5,11 +5,12 @@
 
 Name: prometheus
 Version: 3.2.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: monitoring system and time series database
 License: ASL 2.0
 URL: https://prometheus.io
-Source: https://github.com/prometheus/prometheus/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: https://github.com/prometheus/prometheus/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1: https://github.com/prometheus/prometheus/releases/download/v%{version}/prometheus-web-ui-%{version}.tar.gz
 %{?systemd_requires}
 Requires: prometheus-promtool
 Requires(pre): shadow-utils
@@ -28,13 +29,11 @@ Tooling for the Prometheus monitoring system
 
 %prep
 %setup -q -n prometheus-%{version}
+tar -xf %{SOURCE1} -C web/ui
 
 %build
 cd %{_builddir}/prometheus-%{version}
-go install -C cmd/prometheus
-go build -C cmd/prometheus -o $(pwd)/prometheus
-go install -C cmd/promtool
-go build -C cmd/promtool -o $(pwd)/promtool
+make PREBUILT_ASSETS_STATIC_DIR=web/ui/static build
 
 %install
 %{__rm} -rf %{buildroot}
