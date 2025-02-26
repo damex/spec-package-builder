@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
 
 Name: blackbox-exporter
-Version: 0.25.0
+Version: 0.26.0
 Release: 1%{?dist}
 Summary: Prometheus Blackbox Exporter
 License: ASL 2.0
