@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
 
 Name: alertmanager
-Version: 0.28.0
+Version: 0.28.1
 Release: 1%{?dist}
 Summary: The Alertmanager handles alerts sent by client applications such as the Prometheus server.
 License: ASL 2.0
