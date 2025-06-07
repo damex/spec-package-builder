@@ -14,7 +14,7 @@ Source: https://github.com/containernetworking/plugins/archive/refs/tags/v%{vers
 Requires: cni-plugins-main = %{version}
 Requires: cni-plugins-ipam = %{version}
 Requires: cni-plugins-meta = %{version}
-BuildRequires: golang >= 1.22.0, golang < 1.23.0
+BuildRequires: golang >= 1.23.0, golang < 1.24.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n cni-plugins-main

@@ -10,7 +10,7 @@ Summary: The package manager for Kubernetes
 License: ASL 2.0
 URL: https://helm.sh
 Source: https://github.com/helm/helm/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildRequires: golang >= 1.22.0, golang < 1.23.0
+BuildRequires: golang >= 1.23.0, golang < 1.24.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
