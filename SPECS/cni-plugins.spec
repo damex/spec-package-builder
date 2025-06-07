@@ -5,7 +5,7 @@
 %define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
 
 Name: cni-plugins
-Version: 1.5.1
+Version: 1.7.1
 Release: 1%{?dist}
 Summary: CNI network plugins
 License: ASL 2.0
