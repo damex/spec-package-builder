@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
 
 Name: helm
-Version: 3.17.3
+Version: 3.18.2
 Release: 1%{?dist}
 Summary: The package manager for Kubernetes
 License: ASL 2.0
