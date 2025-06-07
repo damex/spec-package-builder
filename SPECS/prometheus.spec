@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
 
 Name: prometheus
-Version: 3.2.1
+Version: 3.4.1
 Release: 1%{?dist}
 Summary: monitoring system and time series database
 License: ASL 2.0
