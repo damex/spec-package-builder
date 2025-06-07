@@ -14,7 +14,7 @@ Source1: https://github.com/prometheus/prometheus/releases/download/v%{version}/
 %{?systemd_requires}
 Requires: prometheus-promtool
 Requires(pre): shadow-utils
-BuildRequires: golang >= 1.22.0, golang < 1.23.0
+BuildRequires: golang >= 1.23.0, golang < 1.24.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n prometheus-promtool
