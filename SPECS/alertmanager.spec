@@ -13,7 +13,7 @@ Source: https://github.com/prometheus/alertmanager/archive/refs/tags/v%{version}
 %{?systemd_requires}
 Requires(pre): shadow-utils
 Requires: alertmanager-amtool
-BuildRequires: golang >= 1.23.0, golang < 1.24.0
+BuildRequires: golang >= 1.24.0, golang < 1.25.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n alertmanager-amtool

@@ -10,7 +10,7 @@ Summary: open-source container orchestration system
 License: ASL 2.0
 URL: https://kubernetes.io
 Source: https://github.com/kubernetes/kubernetes/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildRequires: golang >= 1.23.0, golang < 1.24.0
+BuildRequires: golang >= 1.24.0, golang < 1.25.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n kube-apiserver
