@@ -12,7 +12,7 @@ URL: https://etcd.io
 Source: https://github.com/etcd-io/etcd/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
-BuildRequires: golang >= 1.23.0, golang < 1.24.0
+BuildRequires: golang >= 1.24.0, golang < 1.25.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n etcd-etcdctl
