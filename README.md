@@ -115,5 +115,6 @@ gpgcheck = 0
 | postgresql-exporter    | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9|
 | prometheus             | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9|
 | prometheus-promtool    | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9|
+| rsyslog-exporter       | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9|
 | smartctl-exporter      | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9|
 | systemd-exporter       | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9|
