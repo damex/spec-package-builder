@@ -87,9 +87,6 @@ exit 0
 %postun
 %systemd_postun prometheus.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/prometheus

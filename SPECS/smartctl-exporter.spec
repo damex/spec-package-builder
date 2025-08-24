@@ -67,9 +67,6 @@ EOF
 %postun
 %systemd_postun smartctl-exporter.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/smartctl-exporter

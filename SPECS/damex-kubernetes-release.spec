@@ -28,9 +28,6 @@ baseurl = https://yum-repositories.damex.org/kubernetes/%{disttype}/%{distnum}/%
 gpgcheck = 0
 EOF
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %config %{_sysconfdir}/yum.repos.d/damex-kubernetes.repo

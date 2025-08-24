@@ -66,9 +66,6 @@ EOF
 %postun
 %systemd_postun systemd-exporter.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/systemd-exporter

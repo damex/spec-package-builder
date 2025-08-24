@@ -70,9 +70,6 @@ EOF
 %postun
 %systemd_postun blackbox-exporter.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/blackbox-exporter

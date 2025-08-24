@@ -110,9 +110,6 @@ go build -C plugins/meta/vrf -o $(pwd)/vrf
 %{__install} -m 755 tuning %{buildroot}%{cni_bindir}/tuning
 %{__install} -m 755 vrf %{buildroot}%{cni_bindir}/vrf
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 
 %files -n cni-plugins-main
