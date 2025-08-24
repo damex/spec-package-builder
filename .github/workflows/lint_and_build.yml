@@ -22,9 +22,14 @@ jobs:
     strategy:
       matrix:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+        docker_image:
+          - name: ghcr.io/almalinux/9-base
+            tag: 9
+          - name: ghcr.io/almalinux/10-base
+            tag: 10
     steps:
       - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} lint_in_docker
+      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} lint_in_docker
 
   build:
     runs-on: ubuntu-24.04

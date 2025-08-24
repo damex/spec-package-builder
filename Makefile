@@ -44,6 +44,7 @@ install_build_dependencies:
 	dnf --assumeyes install $(BUILD_DEPENDENCIES)
 
 install_lint_dependencies:
+	dnf --assumeyes install epel-release
 	dnf --assumeyes install $(LINT_DEPENDENCIES)
 
 install_publish_dependencies:
