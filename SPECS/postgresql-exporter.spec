@@ -79,9 +79,6 @@ getent passwd prometheus >/dev/null || \
 %postun
 %systemd_postun postgresql-exporter.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/postgresql-exporter

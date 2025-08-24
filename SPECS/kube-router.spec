@@ -65,9 +65,6 @@ EOF
 %postun
 %systemd_postun kube-router.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_sysconfdir}/kube-router

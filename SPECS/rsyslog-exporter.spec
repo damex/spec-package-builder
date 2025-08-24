@@ -29,9 +29,6 @@ go build -o %{name}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -m 755 rsyslog-exporter %{buildroot}%{_bindir}/rsyslog-exporter
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/rsyslog-exporter

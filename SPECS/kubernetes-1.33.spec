@@ -308,9 +308,6 @@ exit 0
 %postun -n kubelet
 %systemd_postun kubelet.service
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files -n kube-apiserver
 %defattr(-,root,root,-)
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
