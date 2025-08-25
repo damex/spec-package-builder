@@ -41,9 +41,14 @@ jobs:
     strategy:
       matrix:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+        docker_image:
+          - name: ghcr.io/almalinux/9-base
+            tag: 9
+          - name: ghcr.io/almalinux/10-base
+            tag: 10
     steps:
       - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} build_in_docker
+      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} build_in_docker
       - uses: actions/upload-artifact@v4
         with:
           name: kubernetes-rpms-${{ matrix.spec_file }}
@@ -62,6 +67,11 @@ jobs:
         repository:
           - kubernetes
           - prometheus
+        docker_image:
+          - name: ghcr.io/almalinux/9-base
+            tag: 9
+          - name: ghcr.io/almalinux/10-base
+            tag: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -69,4 +79,4 @@ jobs:
           pattern: ${{ matrix.repository }}-rpms-*
           merge-multiple: true
           path: RPMS/${{ matrix.repository }}
-      - run: make SPEC_FILE=none YUM_REPOSITORIES_ACCESS_KEY=${{ secrets.YUM_REPOSITORIES_ACCESS_KEY }} YUM_REPOSITORIES_SECRET_KEY=${{ secrets.YUM_REPOSITORIES_SECRET_KEY }} YUM_REPOSITORIES_S3_ENDPOINT=${{ secrets.YUM_REPOSITORIES_S3_ENDPOINT }} YUM_REPOSITORIES_BUCKET_NAME=${{ secrets.YUM_REPOSITORIES_BUCKET_NAME }} YUM_REPOSITORY_NAME=${{ matrix.repository }} publish_in_docker
+      - run: make SPEC_FILE=none DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} YUM_REPOSITORIES_ACCESS_KEY=${{ secrets.YUM_REPOSITORIES_ACCESS_KEY }} YUM_REPOSITORIES_SECRET_KEY=${{ secrets.YUM_REPOSITORIES_SECRET_KEY }} YUM_REPOSITORIES_S3_ENDPOINT=${{ secrets.YUM_REPOSITORIES_S3_ENDPOINT }} YUM_REPOSITORIES_BUCKET_NAME=${{ secrets.YUM_REPOSITORIES_BUCKET_NAME }} YUM_REPOSITORY_NAME=${{ matrix.repository }} publish_in_docker
