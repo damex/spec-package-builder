@@ -48,6 +48,22 @@ To lint spec files inside a Docker container, run the following command:
 make SPEC_FILE=SPECS/my.spec lint_in_docker
 ```
 
+### Building Packages Inside Podman
+
+To build packages inside a Podman container, run the following command:
+
+```sh
+make SPEC_FILE=SPECS/my.spec build_in_podman
+```
+
+### Linting Spec Files Inside Podman
+
+To lint spec files inside a Podman container, run the following command:
+
+```sh
+make SPEC_FILE=SPECS/my.spec lint_in_podman
+```
+
 ## Using prebuilt packages
 
 ### Add damex-kubernetes repository with prebuilt packages

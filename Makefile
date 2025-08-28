@@ -23,6 +23,16 @@ define run_in_docker
 		sh -c "dnf --assumeyes install make && make $(MAKEFLAGS) $(1)"
 endef
 
+define run_in_podman
+	podman run \
+		--mount "type=bind,source=$(shell pwd),target=$(DOCKER_WORK_DIRECTORY)" \
+		--workdir "$(DOCKER_WORK_DIRECTORY)" \
+		--rm \
+		--tty \
+		$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) \
+		sh -c "dnf --assumeyes install make && make $(MAKEFLAGS) $(1)"
+endef
+
 default: build
 
 build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package
@@ -30,15 +40,24 @@ build: install_build_dependencies get_spec_sources install_spec_build_dependenci
 build_in_docker:
 	@$(call run_in_docker, build)
 
+build_in_podman:
+	@$(call run_in_podman, build)
+
 lint: install_lint_dependencies lint_spec
 
 lint_in_docker:
 	@$(call run_in_docker, lint)
 
+lint_in_podman:
+	@$(call run_in_podman, lint)
+
 publish: install_publish_dependencies create_yum_repository publish_yum_repository_to_s3
 
 publish_in_docker:
 	@$(call run_in_docker, publish)
+
+publish_in_podman:
+	@$(call run_in_podman, publish)
 
 install_build_dependencies:
 	dnf --assumeyes install $(BUILD_DEPENDENCIES)
