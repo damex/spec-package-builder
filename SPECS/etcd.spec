@@ -4,7 +4,7 @@
 %define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
 
 Name: etcd
-Version: 3.5.18
+Version: 3.6.4
 Release: 1%{?dist}
 Summary: distributed key-value store
 License: ASL 2.0
