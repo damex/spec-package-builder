@@ -33,6 +33,7 @@ Tooling for the Alertmanager
 
 %build
 cd %{_builddir}/alertmanager-%{version}
+export GOFLAGS=-buildvcs=false
 go install -C cmd/alertmanager
 go build -C cmd/alertmanager -o $(pwd)/alertmanager
 go install -C cmd/amtool

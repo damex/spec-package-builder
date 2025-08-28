@@ -44,6 +44,7 @@ CNI network plugins (meta)
 
 %build
 cd %{_builddir}/plugins-%{version}
+export GOFLAGS=-buildvcs=false
 # main
 go install -C plugins/main/bridge
 go build -C plugins/main/bridge -o $(pwd)/bridge

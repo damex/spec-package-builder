@@ -22,6 +22,7 @@ Kube-router is a turnkey solution for Kubernetes networking with aim to provide 
 %setup -q
 
 %build
+export GOFLAGS=-buildvcs=false
 go install -C cmd/kube-router
 go build -C cmd/kube-router -o $(pwd)/kube-router
 

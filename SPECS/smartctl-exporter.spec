@@ -24,6 +24,7 @@ Export smartctl statistics to prometheus
 
 %build
 cd %{_builddir}/smartctl_exporter-%{version}
+export GOFLAGS=-buildvcs=false
 go install
 go build -o $(pwd)/smartctl-exporter
 
