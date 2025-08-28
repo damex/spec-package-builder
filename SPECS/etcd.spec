@@ -2,6 +2,7 @@
 %define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
 %define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %define _rpmdir %{_topdir}/RPMS/kubernetes/%{disttype}/%{distnum}
+%undefine source_date_epoch_from_changelog
 
 Name: etcd
 Version: 3.6.4

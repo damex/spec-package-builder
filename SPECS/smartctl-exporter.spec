@@ -2,6 +2,7 @@
 %define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
 %define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
+%undefine source_date_epoch_from_changelog
 
 Name: smartctl-exporter
 Version: 0.13.0
