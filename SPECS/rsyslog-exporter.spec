@@ -22,6 +22,7 @@ Prometheus exporter for rsyslog server metrics.
 
 %build
 cd %{_builddir}/rsyslog_exporter-%{version}
+export GOFLAGS=-buildvcs=false
 go install
 go build -o %{name}
 

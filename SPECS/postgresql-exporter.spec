@@ -24,6 +24,7 @@ Prometheus exporter for PostgreSQL server metrics.
 
 %build
 cd %{_builddir}/postgres_exporter-%{version}
+export GOFLAGS=-buildvcs=false
 go install -C cmd/postgres_exporter
 go build -C cmd/postgres_exporter -o $(pwd)/postgresql-exporter
 

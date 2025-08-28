@@ -24,6 +24,7 @@ Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written
 
 %build
 cd %{_builddir}/node_exporter-%{version}
+export GOFLAGS=-buildvcs=false
 go install
 go build -o $(pwd)/node-exporter
 

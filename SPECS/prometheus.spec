@@ -34,6 +34,7 @@ tar -xf %{SOURCE1} -C web/ui
 
 %build
 cd %{_builddir}/prometheus-%{version}
+export GOFLAGS=-buildvcs=false
 make PREBUILT_ASSETS_STATIC_DIR=web/ui/static build
 
 %install

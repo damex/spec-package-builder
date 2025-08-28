@@ -23,6 +23,7 @@ The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS
 
 %build
 cd %{_builddir}/blackbox_exporter-%{version}
+export GOFLAGS=-buildvcs=false
 go install
 go build -o $(pwd)/blackbox-exporter
 

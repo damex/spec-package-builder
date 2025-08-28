@@ -59,6 +59,7 @@ Summary: command line tool for converting config files between different Kuberne
 
 %build
 cd %{_builddir}/kubernetes-%{version}
+export GOFLAGS=-buildvcs=false
 go install -C cmd/kube-apiserver
 go build -C cmd/kube-apiserver -o $(pwd)/kube-apiserver
 go install -C cmd/kube-controller-manager
