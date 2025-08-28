@@ -1,7 +1,9 @@
 ---
 name: lint_and_build
 on:  # yamllint disable-line rule:truthy
-  - push
+  push:
+    branches-ignore:
+      - production
 
 jobs:
   list_spec_files:
