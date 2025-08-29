@@ -6,7 +6,7 @@
 
 Name: blackbox-exporter
 Version: 0.26.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus Blackbox Exporter
 License: ASL 2.0
 URL: https://github.com/prometheus/blackbox_exporter
@@ -40,8 +40,8 @@ Description=Prometheus blackbox Exporter
 Documentation=%{url}
 
 [Service]
-User=root
-Group=root
+User=prometheus
+Group=prometheus
 EnvironmentFile=%{_sysconfdir}/default/blackbox-exporter
 ExecStart=%{_bindir}/blackbox-exporter \$ARGUMENTS
 ExecReload=%{_bindir}/kill -HUP \$MAINPID
@@ -52,6 +52,7 @@ Restart=always
 RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
+AmbientCapabilities=CAP_NET_RAW
 
 [Install]
 WantedBy=multi-user.target
