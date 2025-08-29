@@ -5,8 +5,8 @@
 %undefine source_date_epoch_from_changelog
 
 Name: blackbox-exporter
-Version: 0.26.0
-Release: 2%{?dist}
+Version: 0.27.0
+Release: 1%{?dist}
 Summary: Prometheus Blackbox Exporter
 License: ASL 2.0
 URL: https://github.com/prometheus/blackbox_exporter
