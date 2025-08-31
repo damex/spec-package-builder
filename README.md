@@ -139,6 +139,7 @@ gpgcheck = 0
 | alertmanager           | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | alertmanager-amtool    | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | blackbox-exporter      | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
+| kafka-exporter         | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | node-exporter          | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | postgresql-exporter    | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | prometheus             | damex-prometheus | x86_64       | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
