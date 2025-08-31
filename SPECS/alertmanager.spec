@@ -29,10 +29,9 @@ PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts
 Tooling for the Alertmanager
 
 %prep
-%setup -q -n alertmanager-%{version}
+%setup -q
 
 %build
-cd %{_builddir}/alertmanager-%{version}
 export GOFLAGS=-buildvcs=false
 go install -C cmd/alertmanager
 go build -C cmd/alertmanager -o $(pwd)/alertmanager
