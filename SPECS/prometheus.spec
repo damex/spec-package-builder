@@ -29,11 +29,10 @@ It collects metrics from configured targets at given intervals, evaluates rule e
 Tooling for the Prometheus monitoring system
 
 %prep
-%setup -q -n prometheus-%{version}
+%setup -q
 tar -xf %{SOURCE1} -C web/ui
 
 %build
-cd %{_builddir}/prometheus-%{version}
 export GOFLAGS=-buildvcs=false
 make PREBUILT_ASSETS_STATIC_DIR=web/ui/static build
 
