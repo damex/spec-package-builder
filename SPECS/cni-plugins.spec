@@ -7,7 +7,7 @@
 
 Name: cni-plugins
 Version: 1.7.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: CNI network plugins
 License: ASL 2.0
 URL: https://github.com/containernetworking/plugins
@@ -78,8 +78,6 @@ go install -C plugins/meta/firewall
 go build -C plugins/meta/firewall -o $(pwd)/firewall
 go install -C plugins/meta/portmap
 go build -C plugins/meta/portmap -o $(pwd)/portmap
-go install -C plugins/meta/sbr
-go build -C plugins/meta/sbr -o $(pwd)/sbr
 go install -C plugins/meta/sbr
 go build -C plugins/meta/sbr -o $(pwd)/sbr
 go install -C plugins/meta/tuning
