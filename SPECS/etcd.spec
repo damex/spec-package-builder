@@ -46,7 +46,6 @@ Summary: Provides metrics for the latest main branch, a given endpoint, or versi
 %setup -q
 
 %build
-cd %{_builddir}/etcd-%{version}
 export GOFLAGS=-buildvcs=false
 go install
 go build -o $(pwd)/etcd
