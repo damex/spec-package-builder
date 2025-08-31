@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: smartctl-exporter
-Version: 0.13.0
+Version: 0.14.0
 Release: 1%{?dist}
 Summary: prometheus smartctl exporter
 License: ASL 2.0
