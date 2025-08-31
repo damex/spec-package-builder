@@ -101,7 +101,7 @@ cat <<EOF > %{buildroot}%{_sysconfdir}/default/etcd
 ARGUMENTS="--data-dir=%{_sharedstatedir}/etcd"
 EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/etcd/etcd.yml
-ARGS=""
+---
 EOF
 
 %pre
