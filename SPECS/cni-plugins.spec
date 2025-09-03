@@ -6,8 +6,8 @@
 %undefine source_date_epoch_from_changelog
 
 Name: cni-plugins
-Version: 1.7.1
-Release: 2%{?dist}
+Version: 1.8.0
+Release: 1%{?dist}
 Summary: CNI network plugins
 License: ASL 2.0
 URL: https://github.com/containernetworking/plugins
