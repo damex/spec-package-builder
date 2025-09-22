@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: prometheus
-Version: 3.5.0
+Version: %{prometheus_version}
 Release: 1%{?dist}
 Summary: monitoring system and time series database
 License: ASL 2.0
