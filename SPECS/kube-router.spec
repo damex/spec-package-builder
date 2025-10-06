@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: kube-router
-Version: 2.5.0
+Version: 2.6.2
 Release: 1%{?dist}
 Summary: a turnkey solution for Kubernetes networking
 License: ASL 2.0
