@@ -11,7 +11,7 @@ Summary: simple and easy way to configure a layer 3 network fabric designed for 
 License: ASL 2.0
 URL: https://github.com/flannel-io/flannel
 Source: https://github.com/flannel-io/flannel/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildRequires: golang >= 1.24.0, golang < 1.25.0
+BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
