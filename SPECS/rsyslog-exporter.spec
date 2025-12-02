@@ -11,7 +11,7 @@ Summary: Prometheus Rsyslog Exporter
 License: ASL 2.0
 URL: https://github.com/prometheus-community/rsyslog_exporter
 Source: https://github.com/prometheus-community/rsyslog_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildRequires: golang >= 1.24.0, golang < 1.25.0
+BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description

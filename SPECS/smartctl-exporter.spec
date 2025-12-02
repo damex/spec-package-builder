@@ -13,7 +13,7 @@ URL: https://github.com/prometheus-community/smartctl_exporter
 Source: https://github.com/prometheus-community/smartctl_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 Requires: smartmontools >= 1:7.0
-BuildRequires: golang >= 1.24.0, golang < 1.25.0
+BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
