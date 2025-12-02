@@ -12,6 +12,8 @@ DOCKER_WORK_DIRECTORY := /srv
 REDHAT_DISTRIBUTION_TYPE ?= $(shell /usr/lib/rpm/redhat/dist.sh --disttype)
 REDHAT_DISTRIBUTION_VERSION ?= $(shell /usr/lib/rpm/redhat/dist.sh --distnum)
 REDHAT_DISTRIBUTION_ARCHITECTURE ?= $(shell /usr/bin/arch)
+GPG_PUBLIC_KEY := yum-repositories-2035-11-30.gpg
+GPG_ASCII_PUBLIC_KEY := yum-repositories-2035-11-30.asc
 
 define run_in_docker
 	docker run \
@@ -51,7 +53,7 @@ lint_in_docker:
 lint_in_podman:
 	@$(call run_in_podman, lint)
 
-publish: install_publish_dependencies create_yum_repository publish_yum_repository_to_s3
+publish: install_publish_dependencies create_yum_repository sign_yum_repository publish_yum_repository_to_s3
 
 publish_in_docker:
 	@$(call run_in_docker, publish)
@@ -84,6 +86,11 @@ build_package:
 
 create_yum_repository:
 	createrepo --verbose RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)
+
+sign_yum_repository:
+	gpg --batch --yes --passphrase ${GPG_PASSPHRASE} --pinentry-mode loopback --detach-sign --armor RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/repodata/repomd.xml
+	gpgv --keyring ./$(GPG_PUBLIC_KEY) RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/repodata/repomd.xml.asc RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/repodata/repomd.xml
+	cp $(GPG_ASCII_PUBLIC_KEY) $(GPG_PUBLIC_KEY) RPMS/$(YUM_REPOSITORY_NAME)
 
 publish_yum_repository_to_s3:
 	s3cmd sync \
