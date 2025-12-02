@@ -71,13 +71,13 @@ make SPEC_FILE=SPECS/my.spec lint_in_podman
 To add `damex-kubernetes` repository to `Red Hat Enterprise Linux 9` install the following package:
 
 ```sh
-https://yum-repositories.damex.org/kubernetes/el/9/x86_64/damex-kubernetes-release-0.1.0-1.el9.x86_64.rpm
+https://yum-repositories.damex.org/kubernetes/el/9/x86_64/damex-kubernetes-release-0.1.1-1.el9.x86_64.rpm
 ```
 
 To add `damex-kubernetes` repository to `Red Hat Enterprise Linux 10` install the following package:
 
 ```sh
-https://yum-repositories.damex.org/kubernetes/el/10/x86_64/damex-kubernetes-release-0.1.0-1.el10.x86_64.rpm
+https://yum-repositories.damex.org/kubernetes/el/10/x86_64/damex-kubernetes-release-0.1.1-1.el10.x86_64.rpm
 ```
 
 Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-kubernetes.repo`:
@@ -86,7 +86,8 @@ Alternatively, it can be done manually by adding the following configuration to 
 [damex-kubernetes]
 name = damex-kubernetes
 baseurl = https://yum-repositories.damex.org/kubernetes/el/$releasever/x86_64
-gpgcheck = 0
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/kubernetes/yum-repositories-2035-11-30.asc
 ```
 
 ### Add damex-prometheus repository with prebuilt packages
@@ -94,13 +95,13 @@ gpgcheck = 0
 To add `damex-prometheus` repository to `Red Hat Enterprise Linux 9` install the following package:
 
 ```sh
-https://yum-repositories.damex.org/prometheus/el/9/x86_64/damex-prometheus-release-0.1.0-1.el9.x86_64.rpm
+https://yum-repositories.damex.org/prometheus/el/9/x86_64/damex-prometheus-release-0.1.1-1.el9.x86_64.rpm
 ```
 
 To add `damex-prometheus` repository to `Red Hat Enterprise Linux 10` install the following package:
 
 ```sh
-https://yum-repositories.damex.org/prometheus/el/10/x86_64/damex-prometheus-release-0.1.0-1.el10.x86_64.rpm
+https://yum-repositories.damex.org/prometheus/el/10/x86_64/damex-prometheus-release-0.1.1-1.el10.x86_64.rpm
 ```
 
 Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-prometheus.repo`:
@@ -109,7 +110,8 @@ Alternatively, it can be done manually by adding the following configuration to 
 [damex-prometheus]
 name = damex-prometheus
 baseurl = https://yum-repositories.damex.org/prometheus/el/$releasever/x86_64
-gpgcheck = 0
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/prometheus/yum-repositories-2035-11-30.asc
 ```
 
 ### List of prebuilt packages

@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: damex-kubernetes-release
-Version: 0.1.0
+Version: 0.1.1
 Release: 1%{?dist}
 Summary: damex kubernetes repository configuration
 License: MIT
@@ -25,7 +25,8 @@ cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-kubernetes.repo
 [damex-kubernetes]
 name = damex-kubernetes
 baseurl = https://yum-repositories.damex.org/kubernetes/%{disttype}/%{distnum}/%{_arch}
-gpgcheck = 0
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/kubernetes/yum-repositories-2035-11-30.asc
 EOF
 
 %files
