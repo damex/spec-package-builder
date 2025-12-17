@@ -6,7 +6,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: cni-plugins
-Version: 1.8.0
+Version: 1.9.0
 Release: 1%{?dist}
 Summary: CNI network plugins
 License: ASL 2.0
