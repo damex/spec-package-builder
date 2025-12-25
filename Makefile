@@ -2,9 +2,10 @@ ifndef SPEC_FILE
 $(error SPEC_FILE is not defined. Please define SPEC_FILE as a spec file you want to build using this Makefile.)
 endif
 
-BUILD_DEPENDENCIES := dnf-utils gnupg rpmdevtools rpm-build rpm-sign
+BUILD_DEPENDENCIES := dnf-utils rpmdevtools rpm-build
 LINT_DEPENDENCIES := rpmlint
-PUBLISH_DEPENDENCIES := createrepo gnupg redhat-rpm-config s3cmd
+SIGN_DEPENDENCIES := gnupg rpm-sign
+PUBLISH_DEPENDENCIES := createrepo redhat-rpm-config s3cmd
 SOURCES_DIRECTORY := $(shell pwd)/SOURCES
 DOCKER_IMAGE_NAME := ghcr.io/almalinux/9-base
 DOCKER_IMAGE_TAG := 9
@@ -38,7 +39,7 @@ endef
 
 default: build
 
-build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package sign_rpm_packages verify_rpm_packages
+build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package install_sign_dependencies sign_rpm_packages verify_rpm_packages
 
 build_in_docker:
 	@$(call run_in_docker, build)
@@ -54,7 +55,7 @@ lint_in_docker:
 lint_in_podman:
 	@$(call run_in_podman, lint)
 
-publish: install_publish_dependencies create_yum_repository sign_yum_repository verify_yum_repository publish_yum_repository_to_s3
+publish: install_publish_dependencies create_yum_repository install_sign_dependencies sign_yum_repository verify_yum_repository publish_yum_repository_to_s3
 
 publish_in_docker:
 	@$(call run_in_docker, publish)
@@ -68,6 +69,9 @@ install_build_dependencies:
 install_lint_dependencies:
 	dnf --assumeyes install epel-release
 	dnf --assumeyes install $(LINT_DEPENDENCIES)
+
+install_lint_dependencies:
+	dnf --assumeyes install $(SIGN_DEPENDENCIES)
 
 install_publish_dependencies:
 	dnf --assumeyes install epel-release
