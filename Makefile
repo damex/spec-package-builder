@@ -2,7 +2,7 @@ ifndef SPEC_FILE
 $(error SPEC_FILE is not defined. Please define SPEC_FILE as a spec file you want to build using this Makefile.)
 endif
 
-BUILD_DEPENDENCIES := rpmdevtools rpm-build dnf-utils
+BUILD_DEPENDENCIES := dnf-utils rpmdevtools rpm-build rpm-sign
 LINT_DEPENDENCIES := rpmlint
 PUBLISH_DEPENDENCIES := createrepo gnupg redhat-rpm-config rpm-sign s3cmd
 SOURCES_DIRECTORY := $(shell pwd)/SOURCES
