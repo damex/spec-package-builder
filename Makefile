@@ -86,6 +86,7 @@ build_package:
 	rpmbuild -bb --define "_topdir $(shell pwd)" $(SPEC_FILE)
 
 sign_rpm_packages:
+	printf '%s' "$${GPG_PRIVATE_KEY}" | base64 --decode | gpg --batch --yes --import
 	echo "unlock" | gpg --batch --yes --passphrase ${GPG_PASSPHRASE} --pinentry-mode loopback --sign --output /dev/null
 	for rpm_package_to_sign in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmsign --key-id="$(GPG_KEY_ID)" --addsign "$${rpm_package_to_sign}"; done
 
