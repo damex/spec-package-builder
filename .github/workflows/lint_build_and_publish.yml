@@ -48,7 +48,7 @@ jobs:
             tag: 10
     steps:
       - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} build_in_docker
+      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} GPG_PRIVATE_KEY="${{ secrets.GPG_PRIVATE_KEY }}" GPG_PASSPHRASE=${{ secrets.GPG_PASSPHRASE }} build_and_sign_in_docker
       - uses: actions/upload-artifact@v4
         with:
           name: kubernetes-rpms-${{ matrix.spec_file }}-${{ matrix.docker_image.tag }}

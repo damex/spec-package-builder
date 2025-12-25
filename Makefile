@@ -39,13 +39,21 @@ endef
 
 default: build
 
-build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package install_sign_dependencies sign_rpm_packages verify_rpm_packages
+build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package
+
+build_and_sign: build install_sign_dependencies sign_rpm_packages verify_rpm_packages
 
 build_in_docker:
 	@$(call run_in_docker, build)
 
+build_and_sign_in_docker:
+	@$(call run_in_docker, build_and_sign)
+
 build_in_podman:
 	@$(call run_in_podman, build)
+
+build_and_sign_in_podman:
+	@$(call run_in_podman, build_and_sign)
 
 lint: install_lint_dependencies lint_spec
 
