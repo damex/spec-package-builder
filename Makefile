@@ -38,7 +38,7 @@ endef
 
 default: build
 
-build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package
+build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package sign_rpm_packages verify_rpm_packages
 
 build_in_docker:
 	@$(call run_in_docker, build)
@@ -54,7 +54,7 @@ lint_in_docker:
 lint_in_podman:
 	@$(call run_in_podman, lint)
 
-publish: install_publish_dependencies create_yum_repository sign_yum_repository publish_yum_repository_to_s3
+publish: install_publish_dependencies create_yum_repository sign_yum_repository verify_yum_repository publish_yum_repository_to_s3
 
 publish_in_docker:
 	@$(call run_in_docker, publish)
@@ -85,16 +85,23 @@ install_spec_build_dependencies:
 build_package:
 	rpmbuild -bb --define "_topdir $(shell pwd)" $(SPEC_FILE)
 
+sign_rpm_packages:
+	echo "unlock" | gpg --batch --yes --passphrase ${GPG_PASSPHRASE} --pinentry-mode loopback --sign --output /dev/null
+	for rpm_package_to_sign in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmsign --key-id="$(GPG_KEY_ID)" --addsign "$${rpm_package_to_sign}"; done
+
+verify_rpm_packages:
+	rpmkeys --import ./$(GPG_ASCII_PUBLIC_KEY)
+	for rpm_package_to_verify in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmkeys --checksig "$${rpm_package_to_verify}"; done
+
 create_yum_repository:
 	createrepo --verbose RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)
 
 sign_yum_repository:
 	printf '%s' "$${GPG_PRIVATE_KEY}" | base64 --decode | gpg --batch --yes --import
 	gpg --batch --yes --passphrase ${GPG_PASSPHRASE} --pinentry-mode loopback --detach-sign --armor RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/repodata/repomd.xml
-	for rpm_package_to_sign in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpm --define "_signature gpg" --define "_gpg_name $(GPG_KEY_ID)" --addsign "$${rpm_package_to_sign}"; done
+
+verify_yum_repository:
 	gpgv --keyring ./$(GPG_PUBLIC_KEY) RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/repodata/repomd.xml.asc RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/repodata/repomd.xml
-	rpmkeys --import ./$(GPG_ASCII_PUBLIC_KEY)
-	for rpm_package_to_verify in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmkeys --checksig "$${rpm_package_to_verify}"; done
 	cp $(GPG_ASCII_PUBLIC_KEY) $(GPG_PUBLIC_KEY) RPMS/$(YUM_REPOSITORY_NAME)
 
 publish_yum_repository_to_s3:
