@@ -2,9 +2,9 @@ ifndef SPEC_FILE
 $(error SPEC_FILE is not defined. Please define SPEC_FILE as a spec file you want to build using this Makefile.)
 endif
 
-BUILD_DEPENDENCIES := dnf-utils rpmdevtools rpm-build rpm-sign
+BUILD_DEPENDENCIES := dnf-utils gnupg rpmdevtools rpm-build rpm-sign
 LINT_DEPENDENCIES := rpmlint
-PUBLISH_DEPENDENCIES := createrepo gnupg redhat-rpm-config rpm-sign s3cmd
+PUBLISH_DEPENDENCIES := createrepo gnupg redhat-rpm-config s3cmd
 SOURCES_DIRECTORY := $(shell pwd)/SOURCES
 DOCKER_IMAGE_NAME := ghcr.io/almalinux/9-base
 DOCKER_IMAGE_TAG := 9
