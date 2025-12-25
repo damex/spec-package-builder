@@ -78,7 +78,7 @@ install_lint_dependencies:
 	dnf --assumeyes install epel-release
 	dnf --assumeyes install $(LINT_DEPENDENCIES)
 
-install_lint_dependencies:
+install_sign_dependencies:
 	dnf --assumeyes install $(SIGN_DEPENDENCIES)
 
 install_publish_dependencies:
