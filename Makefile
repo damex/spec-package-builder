@@ -100,11 +100,11 @@ build_package:
 sign_rpm_packages:
 	printf '%s' "$${GPG_PRIVATE_KEY}" | base64 --decode | gpg --batch --yes --import
 	echo "unlock" | gpg --batch --yes --passphrase ${GPG_PASSPHRASE} --pinentry-mode loopback --sign --output /dev/null
-	for rpm_package_to_sign in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmsign --key-id="$(GPG_KEY_ID)" --addsign "$${rpm_package_to_sign}"; done
+	for rpm_package_to_sign in RPMS/*/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmsign --key-id="$(GPG_KEY_ID)" --addsign "$${rpm_package_to_sign}"; done
 
 verify_rpm_packages:
 	rpmkeys --import ./$(GPG_ASCII_PUBLIC_KEY)
-	for rpm_package_to_verify in RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmkeys --checksig "$${rpm_package_to_verify}"; done
+	for rpm_package_to_verify in RPMS/*/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)/*.rpm; do rpmkeys --checksig "$${rpm_package_to_verify}"; done
 
 create_yum_repository:
 	createrepo --verbose RPMS/$(YUM_REPOSITORY_NAME)/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)
