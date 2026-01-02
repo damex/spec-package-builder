@@ -6,7 +6,7 @@
 
 Name: etcd
 Version: 3.6.7
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: distributed key-value store
 License: ASL 2.0
 URL: https://etcd.io
@@ -48,7 +48,7 @@ Summary: Provides metrics for the latest main branch, a given endpoint, or versi
 %build
 export GOFLAGS=-buildvcs=false
 go install
-go build -o $(pwd)/etcd
+go build -C server -o $(pwd)/etcd
 go install -C etcdctl
 go build -C etcdctl -o $(pwd)/etcd-etcdctl
 go install -C etcdutl
