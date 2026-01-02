@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: etcd
-Version: 3.6.4
+Version: 3.6.7
 Release: 1%{?dist}
 Summary: distributed key-value store
 License: ASL 2.0
@@ -108,7 +108,7 @@ EOF
 getent group etcd >/dev/null || groupadd -r etcd
 getent passwd etcd >/dev/null || \
   useradd -r -g etcd -d %{_sharedstatedir}/etcd -s /sbin/nologin \
-          -c "etcd" etcd/
+          -c "etcd" etcd
 exit 0
 
 %post
