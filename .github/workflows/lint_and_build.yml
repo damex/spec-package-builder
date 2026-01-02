@@ -18,34 +18,40 @@ jobs:
           echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
 
   lint:
-    runs-on: ubuntu-24.04
     needs:
       - list_spec_files
     strategy:
       matrix:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+        runner_image:
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
         docker_image:
           - name: ghcr.io/almalinux/9-base
             tag: 9
           - name: ghcr.io/almalinux/10-base
             tag: 10
+    runs-on: ${{ matrix.runner_image }}
     steps:
       - uses: actions/checkout@v4
       - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} lint_in_docker
 
   build:
-    runs-on: ubuntu-24.04
     needs:
       - list_spec_files
       - lint
     strategy:
       matrix:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+        runner_image:
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
         docker_image:
           - name: ghcr.io/almalinux/9-base
             tag: 9
           - name: ghcr.io/almalinux/10-base
             tag: 10
+    runs-on: ${{ matrix.runner_image }}
     steps:
       - uses: actions/checkout@v4
       - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} build_in_docker
