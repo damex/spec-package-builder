@@ -39,7 +39,7 @@ endef
 
 default: build
 
-build: install_build_dependencies get_spec_sources install_spec_build_dependencies build_package
+build: upgrade install_build_dependencies get_spec_sources install_spec_build_dependencies build_package
 
 build_and_sign: build install_sign_dependencies sign_rpm_packages verify_rpm_packages
 
@@ -55,7 +55,7 @@ build_in_podman:
 build_and_sign_in_podman:
 	@$(call run_in_podman, build_and_sign)
 
-lint: install_lint_dependencies lint_spec
+lint: upgrade install_lint_dependencies lint_spec
 
 lint_in_docker:
 	@$(call run_in_docker, lint)
@@ -63,13 +63,16 @@ lint_in_docker:
 lint_in_podman:
 	@$(call run_in_podman, lint)
 
-publish: install_publish_dependencies create_yum_repository install_sign_dependencies sign_yum_repository verify_yum_repository publish_yum_repository_to_s3
+publish: upgrade install_publish_dependencies create_yum_repository install_sign_dependencies sign_yum_repository verify_yum_repository publish_yum_repository_to_s3
 
 publish_in_docker:
 	@$(call run_in_docker, publish)
 
 publish_in_podman:
 	@$(call run_in_podman, publish)
+
+upgrade:
+	dnf --assumeyes upgrade
 
 install_build_dependencies:
 	dnf --assumeyes install $(BUILD_DEPENDENCIES)
