@@ -1,0 +1,34 @@
+%define debug_package %{nil}
+%define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
+%define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
+%define _rpmdir %{_topdir}/RPMS/pocket-id/%{disttype}/%{distnum}
+%undefine source_date_epoch_from_changelog
+
+Name: damex-pocket-id-release
+Version: 0.1.1
+Release: 1%{?dist}
+Summary: damex pocket-id repository configuration
+License: MIT
+URL: https://yum-repositories.damex.org/pocket-id
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+
+%description
+
+%prep
+
+%build
+
+%install
+%{__rm} -rf %{buildroot}
+%{__install} -d %{buildroot}%{_sysconfdir}/yum.repos.d
+cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-pocket-id.repo
+[damex-pocket-id]
+name = damex-pocket-id
+baseurl = https://yum-repositories.damex.org/pocket-id/%{disttype}/%{distnum}/%{_arch}
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/pocket-id/yum-repositories-2035-11-30.asc
+EOF
+
+%files
+%defattr(-,root,root,-)
+%config %{_sysconfdir}/yum.repos.d/damex-pocket-id.repo

@@ -72,6 +72,7 @@ jobs:
         repository:
           - kubernetes
           - prometheus
+          - pocket-id
         docker_image:
           - name: ghcr.io/almalinux/9-base
             tag: 9
