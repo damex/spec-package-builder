@@ -4,6 +4,8 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - production
+  schedule:
+    - cron: "0 0 * * 0"
 
 jobs:
   list_spec_files:
