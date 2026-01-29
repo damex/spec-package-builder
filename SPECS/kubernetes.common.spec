@@ -105,7 +105,7 @@ RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
 Type=notify
-LimitNOFILE=65536
+LimitNOFILE=65535
 Slice=kubernetes.slice
 
 [Install]
@@ -127,7 +127,7 @@ Restart=always
 RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
-LimitNOFILE=65536
+LimitNOFILE=65535
 Slice=kubernetes.slice
 
 [Install]
@@ -148,7 +148,7 @@ Restart=always
 RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
-LimitNOFILE=65536
+LimitNOFILE=65535
 Slice=kubernetes.slice
 
 [Install]
@@ -171,7 +171,7 @@ Restart=always
 RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
-LimitNOFILE=65536
+LimitNOFILE=65535
 Slice=kubernetes.slice
 
 [Install]
@@ -192,7 +192,7 @@ Restart=always
 RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
-LimitNOFILE=65536
+LimitNOFILE=65535
 Slice=kubernetes.slice
 
 [Install]
