@@ -114,6 +114,7 @@ go build -C plugins/meta/vrf -o $(pwd)/vrf
 
 %files -n cni-plugins-main
 %defattr(-,root,root,-)
+%dir %{cni_bindir}
 %{cni_bindir}/bridge
 %{cni_bindir}/dummy
 %{cni_bindir}/host-device
