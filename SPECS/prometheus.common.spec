@@ -97,4 +97,5 @@ exit 0
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus
 
 %files -n prometheus-promtool
+%defattr(-,root,root,-)
 %{_bindir}/promtool
