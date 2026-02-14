@@ -26,7 +26,7 @@ cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-prometheus.repo
 name = damex-prometheus
 baseurl = https://yum-repositories.damex.org/prometheus/%{disttype}/%{distnum}/%{_arch}
 gpgcheck = 1
-gpgkey = https://yum-repositories.damex.org/kubernetes/yum-repositories-2035-11-30.asc
+gpgkey = https://yum-repositories.damex.org/prometheus/yum-repositories-2035-11-30.asc
 EOF
 
 %files
