@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: alertmanager
-Version: 0.30.1
+Version: 0.31.1
 Release: 1%{?dist}
 Summary: The Alertmanager handles alerts sent by client applications such as the Prometheus server.
 License: ASL 2.0
