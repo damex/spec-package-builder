@@ -34,7 +34,6 @@ go build -C cmd/postgres_exporter -o $(pwd)/postgresql-exporter
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default
 %{__install} -d %{buildroot}%{_sharedstatedir}/prometheus
-ls
 %{__install} -m 755 postgresql-exporter %{buildroot}%{_bindir}/postgresql-exporter
 cat <<EOF > %{buildroot}%{_unitdir}/postgresql-exporter.service
 [Unit]
@@ -71,6 +70,7 @@ getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
   useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
     -c "Prometheus daemon" prometheus
+exit 0
 
 %post
 %systemd_post postgresql-exporter.service
