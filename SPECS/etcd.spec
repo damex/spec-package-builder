@@ -123,6 +123,7 @@ exit 0
 %files
 %defattr(-,root,root,-)
 %{_bindir}/etcd
+%dir %{_sysconfdir}/etcd
 %config(noreplace) %{_sysconfdir}/etcd/etcd.yml
 %{_unitdir}/etcd.service
 %config(noreplace) %{_sysconfdir}/default/etcd
