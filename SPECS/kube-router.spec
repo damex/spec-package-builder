@@ -70,7 +70,7 @@ EOF
 
 %files
 %defattr(-,root,root,-)
-%{_sysconfdir}/kube-router
+%dir %{_sysconfdir}/kube-router
 %{_bindir}/kube-router
 %{_unitdir}/kube-router.service
 %config(noreplace) %{_sysconfdir}/default/kube-router
