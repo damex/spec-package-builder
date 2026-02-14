@@ -127,12 +127,14 @@ go build -C plugins/meta/vrf -o $(pwd)/vrf
 
 %files -n cni-plugins-ipam
 %defattr(-,root,root,-)
+%dir %{cni_bindir}
 %{cni_bindir}/dhcp
 %{cni_bindir}/host-local
 %{cni_bindir}/static
 
 %files -n cni-plugins-meta
 %defattr(-,root,root,-)
+%dir %{cni_bindir}
 %{cni_bindir}/bandwidth
 %{cni_bindir}/firewall
 %{cni_bindir}/portmap
