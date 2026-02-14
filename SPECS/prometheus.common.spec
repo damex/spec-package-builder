@@ -91,6 +91,7 @@ exit 0
 %files
 %defattr(-,root,root,-)
 %{_bindir}/prometheus
+%dir %{_sysconfdir}/prometheus
 %config(noreplace) %{_sysconfdir}/prometheus/prometheus.yml
 %{_unitdir}/prometheus.service
 %config(noreplace) %{_sysconfdir}/default/prometheus
