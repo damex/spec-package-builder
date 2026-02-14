@@ -100,4 +100,5 @@ exit 0
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/alertmanager
 
 %files -n alertmanager-amtool
+%defattr(-,root,root,-)
 %{_bindir}/amtool
