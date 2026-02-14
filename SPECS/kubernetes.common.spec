@@ -324,6 +324,7 @@ exit 0
 %defattr(-,root,root,-)
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kube-proxy
+%dir %{_sysconfdir}/kubernetes
 %config(noreplace) %{_sysconfdir}/kubernetes/kube-proxy.yml
 %{_unitdir}/kube-proxy.service
 %{_bindir}/kube-proxy
@@ -339,6 +340,7 @@ exit 0
 %defattr(-,root,root,-)
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kubelet
+%dir %{_sysconfdir}/kubernetes
 %config(noreplace) %{_sysconfdir}/kubernetes/kubelet.yml
 %{_unitdir}/kubelet.service
 %{_bindir}/kubelet
