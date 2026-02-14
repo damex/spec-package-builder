@@ -41,7 +41,6 @@ Description=Prometheus Valkey & Redis Metrics Exporter
 Documentation=%{url}
 
 [Service]
-Restart=always
 User=prometheus
 Group=prometheus
 EnvironmentFile=%{_sysconfdir}/default/redis-exporter
