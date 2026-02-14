@@ -1,2 +1,2 @@
-%global kubernetes_version 1.35.0
+%global kubernetes_version 1.35.1
 %include SPECS/kubernetes.common.spec
