@@ -140,7 +140,6 @@ Description=Kubernetes network proxy
 Documentation=https://kubernetes.io
 
 [Service]
-Restart=always
 EnvironmentFile=%{_sysconfdir}/default/kube-proxy
 ExecStart=%{_bindir}/kube-proxy \$ARGUMENTS
 OOMScoreAdjust=-1000
@@ -161,7 +160,6 @@ Description=kube-scheduler
 Documentation=https://kubernetes.io
 
 [Service]
-Restart=always
 User=kubernetes
 Group=kubernetes
 EnvironmentFile=%{_sysconfdir}/default/kube-scheduler
@@ -184,7 +182,6 @@ Description=the primary node agent
 Documentation=https://kubernetes.io
 
 [Service]
-Restart=always
 EnvironmentFile=%{_sysconfdir}/default/kubelet
 ExecStart=%{_bindir}/kubelet \$ARGUMENTS
 OOMScoreAdjust=-1000

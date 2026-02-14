@@ -40,7 +40,6 @@ Description=Prometheus Unbound Exporter
 Documentation=%{url}
 
 [Service]
-Restart=always
 User=prometheus
 Group=prometheus
 EnvironmentFile=%{_sysconfdir}/default/unbound-exporter

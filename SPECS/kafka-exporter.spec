@@ -39,7 +39,6 @@ Description=Prometheus Kafka Exporter
 Documentation=%{url}
 
 [Service]
-Restart=always
 User=prometheus
 Group=prometheus
 EnvironmentFile=%{_sysconfdir}/default/kafka-exporter
