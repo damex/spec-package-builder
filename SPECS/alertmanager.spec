@@ -93,6 +93,7 @@ exit 0
 %files
 %defattr(-,root,root,-)
 %{_bindir}/alertmanager
+%dir %{_sysconfdir}/alertmanager
 %config(noreplace) %{_sysconfdir}/alertmanager/alertmanager.yml
 %{_unitdir}/alertmanager.service
 %config(noreplace) %{_sysconfdir}/default/alertmanager
