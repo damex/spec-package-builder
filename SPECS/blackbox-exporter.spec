@@ -12,6 +12,7 @@ License: ASL 2.0
 URL: https://github.com/prometheus/blackbox_exporter
 Source: https://github.com/prometheus/blackbox_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
+Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -63,6 +64,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/blackbox-exporter
 ARGUMENTS="--config.file=%{_sysconfdir}/blackbox-exporter/blackbox-exporter.yml"
 EOF
+
+%pre
+getent group prometheus >/dev/null || groupadd -r prometheus
+getent passwd prometheus >/dev/null || \
+  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
+    -c "Prometheus daemon" prometheus
+exit 0
 
 %post
 %systemd_post blackbox-exporter.service
