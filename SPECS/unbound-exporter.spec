@@ -65,6 +65,7 @@ getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
   useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
     -c "Prometheus daemon" prometheus
+exit 0
 
 %post
 %systemd_post unbound-exporter.service

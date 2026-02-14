@@ -44,6 +44,7 @@ Group=root
 EnvironmentFile=%{_sysconfdir}/default/kube-router
 ExecStart=%{_bindir}/kube-router \$ARGUMENTS
 LimitNOFILE=65535
+OOMScoreAdjust=-1000
 Restart=always
 RestartSec=5s
 StartLimitInterval=0
