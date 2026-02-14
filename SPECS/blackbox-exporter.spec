@@ -85,5 +85,6 @@ exit 0
 %defattr(-,root,root,-)
 %{_bindir}/blackbox-exporter
 %{_unitdir}/blackbox-exporter.service
+%dir %{_sysconfdir}/blackbox-exporter
 %config(noreplace) %{_sysconfdir}/blackbox-exporter/blackbox-exporter.yml
 %config(noreplace) %{_sysconfdir}/default/blackbox-exporter
