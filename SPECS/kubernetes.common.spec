@@ -59,19 +59,13 @@ Summary: command line tool for converting config files between different Kuberne
 
 %build
 export GOFLAGS=-buildvcs=false
-go install -C cmd/kube-apiserver
+go mod download
 go build -C cmd/kube-apiserver -o $(pwd)/kube-apiserver
-go install -C cmd/kube-controller-manager
 go build -C cmd/kube-controller-manager -o $(pwd)/kube-controller-manager
-go install -C cmd/kube-proxy
 go build -C cmd/kube-proxy -o $(pwd)/kube-proxy
-go install -C cmd/kube-scheduler
 go build -C cmd/kube-scheduler -o $(pwd)/kube-scheduler
-go install -C cmd/kubelet
 go build -C cmd/kubelet -o $(pwd)/kubelet
-go install -C cmd/kubectl
 go build -C cmd/kubectl -o $(pwd)/kubectl
-go install -C cmd/kubectl-convert
 go build -C cmd/kubectl-convert -o $(pwd)/kubectl-convert
 
 %install

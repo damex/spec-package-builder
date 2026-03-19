@@ -25,7 +25,7 @@ Prometheus exporter for Unbound metrics, written in Go with pluggable metric col
 %build
 cd %{_builddir}/unbound_exporter-%{version}
 export GOFLAGS=-buildvcs=false
-go install
+go mod download
 go build -o $(pwd)/unbound-exporter
 
 %install

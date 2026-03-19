@@ -47,19 +47,20 @@ Summary: Provides metrics for the latest main branch, a given endpoint, or versi
 
 %build
 export GOFLAGS=-buildvcs=false
-go install
+go mod download
+go mod download -C server
 go build -C server -o $(pwd)/etcd
-go install -C etcdctl
+go mod download -C etcdctl
 go build -C etcdctl -o $(pwd)/etcd-etcdctl
-go install -C etcdutl
+go mod download -C etcdutl
 go build -C etcdutl -o $(pwd)/etcd-etcdutl
-go install -C tools/benchmark
+go mod download -C tools/benchmark
 go build -C tools/benchmark -o $(pwd)/benchmark
-go install -C tools/etcd-dump-db
+go mod download -C tools/etcd-dump-db
 go build -C tools/etcd-dump-db -o $(pwd)/etcd-dump-db
-go install -C tools/etcd-dump-logs
+go mod download -C tools/etcd-dump-logs
 go build -C tools/etcd-dump-logs -o $(pwd)/etcd-dump-logs
-go install -C tools/etcd-dump-metrics
+go mod download -C tools/etcd-dump-metrics
 go build -C tools/etcd-dump-metrics -o $(pwd)/etcd-dump-metrics
 
 %install

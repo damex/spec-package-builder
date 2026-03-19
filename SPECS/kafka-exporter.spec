@@ -24,7 +24,7 @@ Kafka exporter for Prometheus.
 %build
 cd %{_builddir}/kafka_exporter-%{version}
 export GOFLAGS=-buildvcs=false
-go install
+go mod download
 go build -o $(pwd)/kafka-exporter
 
 %install

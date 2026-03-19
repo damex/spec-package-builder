@@ -26,7 +26,7 @@ Supports Valkey and Redis 2.x, 3.x, 4.x, 5.x, 6.x, and 7.x
 %build
 cd %{_builddir}/redis_exporter-%{version}
 export GOFLAGS=-buildvcs=false
-go install
+go mod download
 go build -o $(pwd)/redis-exporter
 
 %install

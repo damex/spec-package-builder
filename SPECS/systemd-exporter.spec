@@ -24,7 +24,7 @@ Prometheus exporter for systemd units, written in Go.
 %build
 cd %{_builddir}/systemd_exporter-%{version}
 export GOFLAGS=-buildvcs=false
-go install
+go mod download
 go build -o $(pwd)/systemd-exporter
 
 %install
