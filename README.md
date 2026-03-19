@@ -8,7 +8,7 @@ It includes a `Makefile` that builds packages natively on `Red Hat Enterprise Li
 
 The `Makefile` accepts `SPEC_FILE` as a mandatory input, allowing you to specify the path to the spec file included in the `SPECS` directory.
 
-Currently, packages and their corresponding spec files are built and tested only for `Red Hat Enterprise Linux 9`, `Red Hat Enterprise Linux 10` and its derivatives like `Alma Linux 9`, `Alma Linux 10`, `Rocky Linux 9` and `Rocky Linux 10`.
+Currently, packages and their corresponding spec files are built and tested only for `Red Hat Enterprise Linux 9`, `Red Hat Enterprise Linux 10` and its derivatives like `Alma Linux 9`, `Alma Linux 10`, `Rocky Linux 9` and `Rocky Linux 10`, as well as `Fedora 43`.
 
 [Follow here if you want to build packages yourself](#Usage).
 
@@ -126,6 +126,27 @@ gpgcheck = 1
 gpgkey = https://yum-repositories.damex.org/prometheus/yum-repositories-2035-11-30.asc
 ```
 
+### Add damex-incus repository with prebuilt packages
+
+To add `damex-incus` repository to `Fedora 43` install the following package:
+
+```sh
+# x86_64
+https://yum-repositories.damex.org/incus/fc/43/x86_64/damex-incus-release-0.1.1-1.fc43.x86_64.rpm
+# aarch64
+https://yum-repositories.damex.org/incus/fc/43/aarch64/damex-incus-release-0.1.1-1.fc43.aarch64.rpm
+```
+
+Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-incus.repo`:
+
+```sh
+[damex-incus]
+name = damex-incus
+baseurl = https://yum-repositories.damex.org/incus/fc/43/$basearch
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/incus/yum-repositories-2035-11-30.asc
+```
+
 ### List of prebuilt packages
 
 | Package              | Repository | Architecture | Distributives              |
@@ -161,3 +182,7 @@ gpgkey = https://yum-repositories.damex.org/prometheus/yum-repositories-2035-11-
 | rsyslog-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | smartctl-exporter      | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
 | systemd-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10|
+| incus                  | damex-incus | x86_64, aarch64 | Fedora 43 |
+| incus-agent            | damex-incus | x86_64, aarch64 | Fedora 43 |
+| incus-client           | damex-incus | x86_64, aarch64 | Fedora 43 |
+| incus-tools            | damex-incus | x86_64, aarch64 | Fedora 43 |
