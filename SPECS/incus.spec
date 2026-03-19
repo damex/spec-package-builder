@@ -229,6 +229,11 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/dnsmasq.d/incus.conf
 except-interface=incusbr0
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/incus.conf
+g incus-admin -
+u incus - "Incus daemon user" %{_sharedstatedir}/incus /sbin/nologin
+EOF
 %{__install} -d %{buildroot}%{_tmpfilesdir}
 cat <<EOF > %{buildroot}%{_tmpfilesdir}/incus.conf
 d /var/cache/incus 0700 root root - -
@@ -251,12 +256,7 @@ vm.max_map_count = 262144
 EOF
 
 %pre
-getent group incus-admin >/dev/null || groupadd -r incus-admin
-getent group incus >/dev/null || groupadd -r incus
-getent passwd incus >/dev/null || \
-  useradd -r -g incus -d %{_sharedstatedir}/incus -s /sbin/nologin \
-          -c "Incus daemon" incus
-exit 0
+%sysusers_create_compat %{_sysusersdir}/incus.conf
 
 %post
 %systemd_post incus.socket
@@ -291,6 +291,7 @@ exit 0
 %config(noreplace) %{_sysconfdir}/default/incus
 %config(noreplace) %{_sysconfdir}/default/incus-user
 %config(noreplace) %{_sysconfdir}/dnsmasq.d/incus.conf
+%{_sysusersdir}/incus.conf
 %{_tmpfilesdir}/incus.conf
 %{_prefix}/lib/sysctl.d/10-incus-inotify.conf
 %dir %attr(711, root, root) %{_sharedstatedir}/incus
