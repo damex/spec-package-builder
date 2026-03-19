@@ -1,0 +1,1 @@
+../kubernetes-1.32.spec

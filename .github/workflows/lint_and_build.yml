@@ -52,3 +52,30 @@ jobs:
       docker_image_name: ghcr.io/almalinux/10-base
       docker_image_tag: "10"
       runner_image: ubuntu-24.04-arm
+
+  lint_fc43:
+    uses: ./.github/workflows/lint.yml
+    with:
+      codename: fc43
+      docker_image_name: registry.fedoraproject.org/fedora
+      docker_image_tag: "43"
+
+  build_fc43_x86_64:
+    needs:
+      - lint_fc43
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: fc43
+      docker_image_name: registry.fedoraproject.org/fedora
+      docker_image_tag: "43"
+      runner_image: ubuntu-24.04
+
+  build_fc43_aarch64:
+    needs:
+      - lint_fc43
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: fc43
+      docker_image_name: registry.fedoraproject.org/fedora
+      docker_image_tag: "43"
+      runner_image: ubuntu-24.04-arm
