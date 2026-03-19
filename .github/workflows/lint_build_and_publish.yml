@@ -8,63 +8,43 @@ on:  # yamllint disable-line rule:truthy
     - cron: "0 0 * * 0"
 
 jobs:
-  list_spec_files:
-    runs-on: ubuntu-24.04
-    outputs:
-      spec_files: ${{ steps.list_spec_files.outputs.spec_files }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: list_spec_files
-        run: |
-          spec_files=$(find SPECS -type f -name '*.spec' ! -name '*.common.spec' -printf  '%f\n' | jq -R . | jq -c -s .)
-          echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
+  lint_el10:
+    uses: ./.github/workflows/lint.yml
+    with:
+      codename: el10
+      docker_image_name: ghcr.io/almalinux/10-base
+      docker_image_tag: "10"
 
-  lint:
+  build_el9:
     needs:
-      - list_spec_files
-    strategy:
-      matrix:
-        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=ghcr.io/almalinux/10-base DOCKER_IMAGE_TAG=10 lint_in_docker
+      - lint_el10
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: el9
+      docker_image_name: ghcr.io/almalinux/9-base
+      docker_image_tag: "9"
+      sign: true
+    secrets:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-  build:
+  build_el10:
     needs:
-      - list_spec_files
-      - lint
-    strategy:
-      matrix:
-        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
-        docker_image:
-          - name: ghcr.io/almalinux/9-base
-            tag: 9
-          - name: ghcr.io/almalinux/10-base
-            tag: 10
-        runner_image:
-          - ubuntu-24.04
-          - ubuntu-24.04-arm
-    runs-on: ${{ matrix.runner_image }}
-    steps:
-      - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} GPG_PRIVATE_KEY="${{ secrets.GPG_PRIVATE_KEY }}" GPG_PASSPHRASE=${{ secrets.GPG_PASSPHRASE }} build_and_sign_in_docker
-      - uses: actions/upload-artifact@v4
-        with:
-          name: kubernetes-rpms-${{ matrix.spec_file }}-${{ matrix.docker_image.tag }}-${{ matrix.runner_image }}
-          path: RPMS/kubernetes
-      - uses: actions/upload-artifact@v4
-        with:
-          name: prometheus-rpms-${{ matrix.spec_file }}-${{ matrix.docker_image.tag }}-${{ matrix.runner_image }}
-          path: RPMS/prometheus
-      - uses: actions/upload-artifact@v4
-        with:
-          name: incus-rpms-${{ matrix.spec_file }}-${{ matrix.docker_image.tag }}-${{ matrix.runner_image }}
-          path: RPMS/incus
+      - lint_el10
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: el10
+      docker_image_name: ghcr.io/almalinux/10-base
+      docker_image_tag: "10"
+      sign: true
+    secrets:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   publish:
     needs:
-      - build
+      - build_el9
+      - build_el10
     strategy:
       matrix:
         repository:

@@ -6,44 +6,27 @@ on:  # yamllint disable-line rule:truthy
       - production
 
 jobs:
-  list_spec_files:
-    runs-on: ubuntu-24.04
-    outputs:
-      spec_files: ${{ steps.list_spec_files.outputs.spec_files }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: list_spec_files
-        run: |
-          spec_files=$(find SPECS -type f -name '*.spec' ! -name '*.common.spec' -printf  '%f\n' | jq -R . | jq -c -s .)
-          echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
+  lint_el10:
+    uses: ./.github/workflows/lint.yml
+    with:
+      codename: el10
+      docker_image_name: ghcr.io/almalinux/10-base
+      docker_image_tag: "10"
 
-  lint:
+  build_el9:
     needs:
-      - list_spec_files
-    strategy:
-      matrix:
-        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=ghcr.io/almalinux/10-base DOCKER_IMAGE_TAG=10 lint_in_docker
+      - lint_el10
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: el9
+      docker_image_name: ghcr.io/almalinux/9-base
+      docker_image_tag: "9"
 
-  build:
+  build_el10:
     needs:
-      - list_spec_files
-      - lint
-    strategy:
-      matrix:
-        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
-        runner_image:
-          - ubuntu-24.04
-          - ubuntu-24.04-arm
-        docker_image:
-          - name: ghcr.io/almalinux/9-base
-            tag: 9
-          - name: ghcr.io/almalinux/10-base
-            tag: 10
-    runs-on: ${{ matrix.runner_image }}
-    steps:
-      - uses: actions/checkout@v4
-      - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ matrix.docker_image.name }} DOCKER_IMAGE_TAG=${{ matrix.docker_image.tag }} build_in_docker
+      - lint_el10
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: el10
+      docker_image_name: ghcr.io/almalinux/10-base
+      docker_image_tag: "10"

@@ -1,0 +1,67 @@
+---
+name: build
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      codename:
+        required: true
+        type: string
+      docker_image_name:
+        required: true
+        type: string
+      docker_image_tag:
+        required: true
+        type: string
+      sign:
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      GPG_PRIVATE_KEY:
+        required: false
+      GPG_PASSPHRASE:
+        required: false
+
+jobs:
+  list_spec_files:
+    runs-on: ubuntu-24.04
+    outputs:
+      spec_files: ${{ steps.list_spec_files.outputs.spec_files }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list_spec_files
+        run: |
+          spec_files=$(find SPECS/${{ inputs.codename }} -type l -name '*.spec' -printf '%f\n' | jq -R . | jq -c -s .)
+          echo "spec_files=$spec_files" >> $GITHUB_OUTPUT
+
+  build:
+    needs:
+      - list_spec_files
+    strategy:
+      matrix:
+        spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
+        runner_image:
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner_image }}
+    steps:
+      - uses: actions/checkout@v4
+      - if: ${{ !inputs.sign }}
+        run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ inputs.docker_image_name }} DOCKER_IMAGE_TAG=${{ inputs.docker_image_tag }} build_in_docker
+      - if: ${{ inputs.sign }}
+        run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ inputs.docker_image_name }} DOCKER_IMAGE_TAG=${{ inputs.docker_image_tag }} GPG_PRIVATE_KEY="${{ secrets.GPG_PRIVATE_KEY }}" GPG_PASSPHRASE=${{ secrets.GPG_PASSPHRASE }} build_and_sign_in_docker
+      - if: ${{ inputs.sign }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: kubernetes-rpms-${{ matrix.spec_file }}-${{ inputs.docker_image_tag }}-${{ matrix.runner_image }}
+          path: RPMS/kubernetes
+      - if: ${{ inputs.sign }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: prometheus-rpms-${{ matrix.spec_file }}-${{ inputs.docker_image_tag }}-${{ matrix.runner_image }}
+          path: RPMS/prometheus
+      - if: ${{ inputs.sign }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: incus-rpms-${{ matrix.spec_file }}-${{ inputs.docker_image_tag }}-${{ matrix.runner_image }}
+          path: RPMS/incus
