@@ -19,7 +19,7 @@ jobs:
     outputs:
       spec_files: ${{ steps.list_spec_files.outputs.spec_files }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - id: list_spec_files
         run: |
           spec_files=$(find SPECS/${{ inputs.codename }} -type l -name '*.spec' -printf '%f\n' | jq -R . | jq -c -s .)
@@ -33,5 +33,5 @@ jobs:
         spec_file: ${{ fromJson(needs.list_spec_files.outputs.spec_files) }}
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: sudo make SPEC_FILE=SPECS/${{ matrix.spec_file }} DOCKER_IMAGE_NAME=${{ inputs.docker_image_name }} DOCKER_IMAGE_TAG=${{ inputs.docker_image_tag }} lint_in_docker
