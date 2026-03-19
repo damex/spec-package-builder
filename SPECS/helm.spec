@@ -22,7 +22,7 @@ Helm is a tool for managing Charts. Charts are packages of pre-configured Kubern
 
 %build
 export GOFLAGS=-buildvcs=false
-go install -C cmd/helm
+go mod download
 go build -C cmd/helm -o $(pwd)/helm
 
 %install

@@ -22,7 +22,7 @@ Flannel is a simple and easy way to configure a layer 3 network fabric designed 
 
 %build
 export GOFLAGS=-buildvcs=false
-go install
+go mod download
 go build -o $(pwd)/flanneld
 
 %install

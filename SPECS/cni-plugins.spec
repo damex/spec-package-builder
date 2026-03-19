@@ -45,44 +45,27 @@ CNI network plugins (meta)
 %build
 cd %{_builddir}/plugins-%{version}
 export GOFLAGS=-buildvcs=false
+go mod download
 # main
-go install -C plugins/main/bridge
 go build -C plugins/main/bridge -o $(pwd)/bridge
-go install -C plugins/main/dummy
 go build -C plugins/main/dummy -o $(pwd)/dummy
-go install -C plugins/main/host-device
 go build -C plugins/main/host-device -o $(pwd)/host-device
-go install -C plugins/main/ipvlan
 go build -C plugins/main/ipvlan -o $(pwd)/ipvlan
-go install -C plugins/main/loopback
 go build -C plugins/main/loopback -o $(pwd)/loopback
-go install -C plugins/main/macvlan
 go build -C plugins/main/macvlan -o $(pwd)/macvlan
-go install -C plugins/main/ptp
 go build -C plugins/main/ptp -o $(pwd)/ptp
-go install -C plugins/main/tap
 go build -C plugins/main/tap -o $(pwd)/tap
-go install -C plugins/main/vlan
 go build -C plugins/main/vlan -o $(pwd)/vlan
 # ipam
-go install -C plugins/ipam/dhcp
 go build -C plugins/ipam/dhcp -o $(pwd)/dhcp
-go install -C plugins/ipam/host-local
 go build -C plugins/ipam/host-local -o $(pwd)/host-local
-go install -C plugins/ipam/static
 go build -C plugins/ipam/static -o $(pwd)/static
 # meta
-go install -C plugins/meta/bandwidth
 go build -C plugins/meta/bandwidth -o $(pwd)/bandwidth
-go install -C plugins/meta/firewall
 go build -C plugins/meta/firewall -o $(pwd)/firewall
-go install -C plugins/meta/portmap
 go build -C plugins/meta/portmap -o $(pwd)/portmap
-go install -C plugins/meta/sbr
 go build -C plugins/meta/sbr -o $(pwd)/sbr
-go install -C plugins/meta/tuning
 go build -C plugins/meta/tuning -o $(pwd)/tuning
-go install -C plugins/meta/vrf
 go build -C plugins/meta/vrf -o $(pwd)/vrf
 
 %install
