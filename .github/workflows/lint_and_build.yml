@@ -13,7 +13,7 @@ jobs:
       docker_image_name: ghcr.io/almalinux/10-base
       docker_image_tag: "10"
 
-  build_el9:
+  build_el9_x86_64:
     needs:
       - lint_el10
     uses: ./.github/workflows/build.yml
@@ -21,8 +21,19 @@ jobs:
       codename: el9
       docker_image_name: ghcr.io/almalinux/9-base
       docker_image_tag: "9"
+      runner_image: ubuntu-24.04
 
-  build_el10:
+  build_el9_aarch64:
+    needs:
+      - lint_el10
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: el9
+      docker_image_name: ghcr.io/almalinux/9-base
+      docker_image_tag: "9"
+      runner_image: ubuntu-24.04-arm
+
+  build_el10_x86_64:
     needs:
       - lint_el10
     uses: ./.github/workflows/build.yml
@@ -30,3 +41,14 @@ jobs:
       codename: el10
       docker_image_name: ghcr.io/almalinux/10-base
       docker_image_tag: "10"
+      runner_image: ubuntu-24.04
+
+  build_el10_aarch64:
+    needs:
+      - lint_el10
+    uses: ./.github/workflows/build.yml
+    with:
+      codename: el10
+      docker_image_name: ghcr.io/almalinux/10-base
+      docker_image_tag: "10"
+      runner_image: ubuntu-24.04-arm
