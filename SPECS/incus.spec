@@ -138,7 +138,7 @@ cat <<EOF > %{buildroot}%{_unitdir}/incus.socket
 Description=Incus - Container and Virtual Machine Manager (unix socket)
 
 [Socket]
-ListenStream=%{_sharedstatedir}/incus/unix.socket
+ListenStream=%{_rundir}/incus/unix.socket
 SocketMode=0660
 SocketGroup=incus-admin
 Service=incus.service
@@ -195,7 +195,7 @@ cat <<EOF > %{buildroot}%{_unitdir}/incus-user.socket
 Description=Incus - Container and Virtual Machine Manager (User unix socket)
 
 [Socket]
-ListenStream=%{_sharedstatedir}/incus/unix.socket.user
+ListenStream=%{_rundir}/incus/unix.socket.user
 SocketMode=0660
 SocketGroup=incus
 Service=incus-user.service
