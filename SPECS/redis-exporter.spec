@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: redis-exporter
-Version: 1.80.1
+Version: 1.82.0
 Release: 1%{?dist}
 Summary: Prometheus Valkey & Redis Metrics Exporter
 License: MIT
