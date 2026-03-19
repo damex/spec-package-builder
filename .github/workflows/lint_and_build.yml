@@ -6,6 +6,13 @@ on:  # yamllint disable-line rule:truthy
       - production
 
 jobs:
+  lint_el9:
+    uses: ./.github/workflows/lint.yml
+    with:
+      codename: el9
+      docker_image_name: ghcr.io/almalinux/9-base
+      docker_image_tag: "9"
+
   lint_el10:
     uses: ./.github/workflows/lint.yml
     with:
@@ -15,7 +22,7 @@ jobs:
 
   build_el9_x86_64:
     needs:
-      - lint_el10
+      - lint_el9
     uses: ./.github/workflows/build.yml
     with:
       codename: el9
@@ -25,7 +32,7 @@ jobs:
 
   build_el9_aarch64:
     needs:
-      - lint_el10
+      - lint_el9
     uses: ./.github/workflows/build.yml
     with:
       codename: el9
