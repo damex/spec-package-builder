@@ -12,7 +12,7 @@ License: ASL 2.0
 URL: https://github.com/prometheus/jmx_exporter
 Source: https://github.com/prometheus/jmx_exporter/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
-BuildRequires: java-devel
+BuildRequires: java-21-openjdk-devel
 Requires: java
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
