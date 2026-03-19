@@ -78,14 +78,14 @@ install_build_dependencies:
 	dnf --assumeyes install $(BUILD_DEPENDENCIES)
 
 install_lint_dependencies:
-	dnf --assumeyes install epel-release
+	rpm --eval '%{?rhel:epel-release}' | xargs --no-run-if-empty dnf --assumeyes install
 	dnf --assumeyes install $(LINT_DEPENDENCIES)
 
 install_sign_dependencies:
 	dnf --assumeyes install $(SIGN_DEPENDENCIES)
 
 install_publish_dependencies:
-	dnf --assumeyes install epel-release
+	rpm --eval '%{?rhel:epel-release}' | xargs --no-run-if-empty dnf --assumeyes install
 	dnf --assumeyes install $(PUBLISH_DEPENDENCIES)
 
 lint_spec:
