@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: flannel
-Version: 0.27.3
+Version: 0.28.1
 Release: 1%{?dist}
 Summary: simple and easy way to configure a layer 3 network fabric designed for Kubernetes
 License: ASL 2.0
