@@ -5,8 +5,8 @@
 %undefine source_date_epoch_from_changelog
 
 Name: etcd
-Version: 3.6.7
-Release: 2%{?dist}
+Version: 3.6.8
+Release: 1%{?dist}
 Summary: distributed key-value store
 License: ASL 2.0
 URL: https://etcd.io
