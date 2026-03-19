@@ -57,6 +57,10 @@ jobs:
         with:
           name: prometheus-rpms-${{ matrix.spec_file }}-${{ matrix.docker_image.tag }}-${{ matrix.runner_image }}
           path: RPMS/prometheus
+      - uses: actions/upload-artifact@v4
+        with:
+          name: incus-rpms-${{ matrix.spec_file }}-${{ matrix.docker_image.tag }}-${{ matrix.runner_image }}
+          path: RPMS/incus
 
   publish:
     needs:
@@ -66,6 +70,7 @@ jobs:
         repository:
           - kubernetes
           - prometheus
+          - incus
         docker_image:
           - name: ghcr.io/almalinux/9-base
             tag: 9
