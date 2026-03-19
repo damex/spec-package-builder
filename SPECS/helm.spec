@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: helm
-Version: 3.18.5
+Version: 3.20.1
 Release: 1%{?dist}
 Summary: The package manager for Kubernetes
 License: ASL 2.0
