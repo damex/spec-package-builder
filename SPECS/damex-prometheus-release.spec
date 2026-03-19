@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: damex-prometheus-release
-Version: 0.1.1
+Version: 0.2.0
 Release: 1%{?dist}
 Summary: damex prometheus repository configuration
 License: MIT
