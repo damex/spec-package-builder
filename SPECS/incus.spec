@@ -229,6 +229,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/dnsmasq.d/incus.conf
 except-interface=incusbr0
 EOF
+%{__install} -d %{buildroot}%{_tmpfilesdir}
+cat <<EOF > %{buildroot}%{_tmpfilesdir}/incus.conf
+d /var/cache/incus 0700 root root - -
+d /var/log/incus 0700 root root - -
+d /var/lib/incus 0711 root root - -
+d /run/incus 0711 root root - -
+EOF
 %{__install} -d %{buildroot}%{_prefix}/lib/sysctl.d
 cat <<EOF > %{buildroot}%{_prefix}/lib/sysctl.d/10-incus-inotify.conf
 fs.aio-max-nr = 16777216
@@ -284,6 +291,7 @@ exit 0
 %config(noreplace) %{_sysconfdir}/default/incus
 %config(noreplace) %{_sysconfdir}/default/incus-user
 %config(noreplace) %{_sysconfdir}/dnsmasq.d/incus.conf
+%{_tmpfilesdir}/incus.conf
 %{_prefix}/lib/sysctl.d/10-incus-inotify.conf
 %dir %attr(711, root, root) %{_sharedstatedir}/incus
 %dir %attr(700, root, root) %{_localstatedir}/cache/incus
