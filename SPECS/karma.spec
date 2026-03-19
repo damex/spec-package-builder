@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: karma
-Version: 0.122
+Version: 0.128
 Release: 1%{?dist}
 Summary: Alert dashboard for Prometheus Alertmanager
 License: ASL 2.0
