@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Export smartctl statistics to prometheus
 
 %prep
-%setup -q -n smartctl_exporter-%{version}
+%autosetup -n smartctl_exporter-%{version}
 
 %build
 cd %{_builddir}/smartctl_exporter-%{version}
