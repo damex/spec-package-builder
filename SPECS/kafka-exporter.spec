@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Kafka exporter for Prometheus.
 
 %prep
-%setup -q -n kafka_exporter-%{version}
+%autosetup -n kafka_exporter-%{version}
 
 %build
 cd %{_builddir}/kafka_exporter-%{version}
