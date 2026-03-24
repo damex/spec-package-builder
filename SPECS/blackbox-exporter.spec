@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP and ICMP.
 
 %prep
-%setup -q -n blackbox_exporter-%{version}
+%autosetup -n blackbox_exporter-%{version}
 
 %build
 cd %{_builddir}/blackbox_exporter-%{version}
