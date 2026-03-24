@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
 
 %prep
-%setup -q -n node_exporter-%{version}
+%autosetup -n node_exporter-%{version}
 
 %build
 cd %{_builddir}/node_exporter-%{version}
