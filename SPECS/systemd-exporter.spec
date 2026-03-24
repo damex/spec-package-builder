@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prometheus exporter for systemd units, written in Go.
 
 %prep
-%setup -q -n systemd_exporter-%{version}
+%autosetup -n systemd_exporter-%{version}
 
 %build
 cd %{_builddir}/systemd_exporter-%{version}
