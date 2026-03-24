@@ -104,13 +104,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/etcd/etcd.yml
 ---
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/etcd.conf
+u etcd - "etcd" %{_sharedstatedir}/etcd /sbin/nologin
+EOF
 
 %pre
-getent group etcd >/dev/null || groupadd -r etcd
-getent passwd etcd >/dev/null || \
-  useradd -r -g etcd -d %{_sharedstatedir}/etcd -s /sbin/nologin \
-          -c "etcd" etcd
-exit 0
+%sysusers_create_compat %{_sysusersdir}/etcd.conf
 
 %post
 %systemd_post etcd.service
@@ -128,6 +128,7 @@ exit 0
 %config(noreplace) %{_sysconfdir}/etcd/etcd.yml
 %{_unitdir}/etcd.service
 %config(noreplace) %{_sysconfdir}/default/etcd
+%{_sysusersdir}/etcd.conf
 %dir %attr(755, etcd, etcd)%{_sharedstatedir}/etcd
 
 %files -n etcd-etcdctl

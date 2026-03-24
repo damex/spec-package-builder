@@ -22,6 +22,7 @@ define run_in_docker
 		--mount "type=bind,source=$(shell pwd),target=$(DOCKER_WORK_DIRECTORY)" \
 		--workdir "$(DOCKER_WORK_DIRECTORY)" \
 		--rm \
+		--interactive \
 		--tty \
 		$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) \
 		sh -c "dnf --assumeyes install make && make $(MAKEFLAGS) $(1)"
@@ -32,6 +33,7 @@ define run_in_podman
 		--mount "type=bind,source=$(shell pwd),target=$(DOCKER_WORK_DIRECTORY)" \
 		--workdir "$(DOCKER_WORK_DIRECTORY)" \
 		--rm \
+		--interactive \
 		--tty \
 		$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) \
 		sh -c "dnf --assumeyes install make && make $(MAKEFLAGS) $(1)"
