@@ -55,7 +55,7 @@ Summary: command line tool for converting config files between different Kuberne
 %description -n kubectl-convert
 
 %prep
-%setup -q
+%autosetup
 
 %build
 export GOFLAGS=-buildvcs=false
