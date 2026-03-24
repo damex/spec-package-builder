@@ -43,7 +43,7 @@ Summary: Provides metrics for the latest main branch, a given endpoint, or versi
 %description -n etcd-dump-metrics
 
 %prep
-%setup -q
+%autosetup
 
 %build
 export GOFLAGS=-buildvcs=false
