@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prometheus exporter for PostgreSQL server metrics.
 
 %prep
-%setup -q -n postgres_exporter-%{version}
+%autosetup -n postgres_exporter-%{version}
 
 %build
 cd %{_builddir}/postgres_exporter-%{version}
