@@ -97,6 +97,8 @@ get_spec_sources:
 	spectool --get-files --directory $(SOURCES_DIRECTORY) $(SPEC_FILE)
 
 install_spec_build_dependencies:
+	rpm --eval '%{?rhel:epel-release}' | xargs --no-run-if-empty dnf --assumeyes install
+	rpm --eval '%{?rhel:crb}' | xargs --no-run-if-empty dnf config-manager --set-enabled
 	yum-builddep --assumeyes $(SPEC_FILE)
 
 build_package:
