@@ -40,7 +40,7 @@ CNI network plugins (ipam)
 CNI network plugins (meta)
 
 %prep
-%setup -q -n plugins-%{version}
+%autosetup -n plugins-%{version}
 
 %build
 cd %{_builddir}/plugins-%{version}
