@@ -44,7 +44,6 @@ Recommends: xfsprogs
 Recommends: zfs
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRequires: cowsql-devel
-BuildRequires: glibc-static
 BuildRequires: libacl-devel
 BuildRequires: libcap-devel
 BuildRequires: libseccomp-devel
@@ -84,7 +83,7 @@ along with very flexible networking and storage akin to what's offered
 in a public cloud environment. This package contains the virtual machine guest agent.
 
 %prep
-%setup -q
+%autosetup
 
 %build
 export GOFLAGS=-buildvcs=false
