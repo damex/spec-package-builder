@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Helm is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources.
 
 %prep
-%setup -q
+%autosetup
 
 %build
 export GOFLAGS=-buildvcs=false
