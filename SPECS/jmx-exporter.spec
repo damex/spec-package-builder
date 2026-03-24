@@ -26,7 +26,7 @@ The JMX Exporter is a collector to capture JMX MBean values.
 The JMX Exporter is a collector to capture JMX MBean values.
 
 %prep
-%setup -q -n jmx_exporter-%{version}
+%autosetup -n jmx_exporter-%{version}
 
 %build
 cd %{_builddir}/jmx_exporter-%{version}
