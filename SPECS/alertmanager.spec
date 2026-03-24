@@ -29,7 +29,7 @@ PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts
 Tooling for the Alertmanager
 
 %prep
-%setup -q
+%autosetup
 
 %build
 export GOFLAGS=-buildvcs=false
