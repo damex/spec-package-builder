@@ -37,6 +37,7 @@ Requires: %{name}-agent = %{version}-%{release}
 Requires: edk2-ovmf
 Requires: qemu-img
 Requires: qemu-kvm-core
+Recommends: lxcfs
 Recommends: btrfs-progs
 Recommends: ceph-common
 Recommends: lvm2
