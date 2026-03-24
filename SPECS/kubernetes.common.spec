@@ -219,41 +219,37 @@ cat <<EOF > %{buildroot}%{_sysconfdir}/kubernetes/kubelet.yml
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/kube-apiserver.conf
+u kubernetes - "kubernetes" %{_sharedstatedir}/kubernetes /sbin/nologin
+EOF
+cat <<EOF > %{buildroot}%{_sysusersdir}/kube-controller-manager.conf
+u kubernetes - "kubernetes" %{_sharedstatedir}/kubernetes /sbin/nologin
+EOF
+cat <<EOF > %{buildroot}%{_sysusersdir}/kube-proxy.conf
+u kubernetes - "kubernetes" %{_sharedstatedir}/kubernetes /sbin/nologin
+EOF
+cat <<EOF > %{buildroot}%{_sysusersdir}/kube-scheduler.conf
+u kubernetes - "kubernetes" %{_sharedstatedir}/kubernetes /sbin/nologin
+EOF
+cat <<EOF > %{buildroot}%{_sysusersdir}/kubelet.conf
+u kubernetes - "kubernetes" %{_sharedstatedir}/kubernetes /sbin/nologin
+EOF
 
 %pre -n kube-apiserver
-getent group kubernetes >/dev/null || groupadd -r kubernetes
-getent passwd kubernetes >/dev/null || \
-  useradd -r -g kubernetes -d %{_sharedstatedir}/kubernetes -s /sbin/nologin \
-    -c "kubernetes" kubernetes
-exit 0
+%sysusers_create_compat %{_sysusersdir}/kube-apiserver.conf
 
 %pre -n kube-controller-manager
-getent group kubernetes >/dev/null || groupadd -r kubernetes
-getent passwd kubernetes >/dev/null || \
-  useradd -r -g kubernetes -d %{_sharedstatedir}/kubernetes -s /sbin/nologin \
-    -c "kubernetes" kubernetes
-exit 0
+%sysusers_create_compat %{_sysusersdir}/kube-controller-manager.conf
 
 %pre -n kube-proxy
-getent group kubernetes >/dev/null || groupadd -r kubernetes
-getent passwd kubernetes >/dev/null || \
-  useradd -r -g kubernetes -d %{_sharedstatedir}/kubernetes -s /sbin/nologin \
-    -c "kubernetes" kubernetes
-exit 0
+%sysusers_create_compat %{_sysusersdir}/kube-proxy.conf
 
 %pre -n kube-scheduler
-getent group kubernetes >/dev/null || groupadd -r kubernetes
-getent passwd kubernetes >/dev/null || \
-  useradd -r -g kubernetes -d %{_sharedstatedir}/kubernetes -s /sbin/nologin \
-    -c "kubernetes" kubernetes
-exit 0
+%sysusers_create_compat %{_sysusersdir}/kube-scheduler.conf
 
 %pre -n kubelet
-getent group kubernetes >/dev/null || groupadd -r kubernetes
-getent passwd kubernetes >/dev/null || \
-  useradd -r -g kubernetes -d %{_sharedstatedir}/kubernetes -s /sbin/nologin \
-    -c "kubernetes" kubernetes
-exit 0
+%sysusers_create_compat %{_sysusersdir}/kubelet.conf
 
 %post -n kube-apiserver
 %systemd_post kube-apiserver.service
@@ -302,6 +298,7 @@ exit 0
 
 %files -n kube-apiserver
 %defattr(-,root,root,-)
+%{_sysusersdir}/kube-apiserver.conf
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kube-apiserver
 %{_unitdir}/kube-apiserver.service
@@ -309,6 +306,7 @@ exit 0
 
 %files -n kube-controller-manager
 %defattr(-,root,root,-)
+%{_sysusersdir}/kube-controller-manager.conf
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kube-controller-manager
 %{_unitdir}/kube-controller-manager.service
@@ -316,6 +314,7 @@ exit 0
 
 %files -n kube-proxy
 %defattr(-,root,root,-)
+%{_sysusersdir}/kube-proxy.conf
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kube-proxy
 %dir %{_sysconfdir}/kubernetes
@@ -325,6 +324,7 @@ exit 0
 
 %files -n kube-scheduler
 %defattr(-,root,root,-)
+%{_sysusersdir}/kube-scheduler.conf
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kube-scheduler
 %{_unitdir}/kube-scheduler.service
@@ -332,6 +332,7 @@ exit 0
 
 %files -n kubelet
 %defattr(-,root,root,-)
+%{_sysusersdir}/kubelet.conf
 %dir %attr(755, kubernetes, kubernetes)%{_sharedstatedir}/kubernetes
 %config(noreplace) %{_sysconfdir}/default/kubelet
 %dir %{_sysconfdir}/kubernetes
