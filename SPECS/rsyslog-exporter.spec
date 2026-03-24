@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prometheus exporter for rsyslog server metrics.
 
 %prep
-%setup -q -n rsyslog_exporter-%{version}
+%autosetup -n rsyslog_exporter-%{version}
 
 %build
 cd %{_builddir}/rsyslog_exporter-%{version}
