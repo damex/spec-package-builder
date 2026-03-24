@@ -21,7 +21,7 @@ Prometheus exporter for Valkey metrics (Redis-compatible).
 Supports Valkey and Redis 2.x, 3.x, 4.x, 5.x, 6.x, and 7.x
 
 %prep
-%setup -q -n redis_exporter-%{version}
+%autosetup -n redis_exporter-%{version}
 
 %build
 cd %{_builddir}/redis_exporter-%{version}
