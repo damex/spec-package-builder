@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prometheus exporter for Unbound metrics, written in Go with pluggable metric collectors. The metrics exporter converts Unbound metric names to Prometheus metric names and labels by using a set of regular expressions.
 
 %prep
-%setup -q -n unbound_exporter-%{version}
+%autosetup -n unbound_exporter-%{version}
 
 %build
 cd %{_builddir}/unbound_exporter-%{version}
