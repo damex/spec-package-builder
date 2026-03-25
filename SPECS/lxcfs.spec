@@ -16,6 +16,7 @@ BuildRequires: gcc
 BuildRequires: fuse3-devel
 BuildRequires: meson
 BuildRequires: python3-jinja2
+BuildRequires: systemd
 Requires: fuse3
 %{?systemd_requires}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
