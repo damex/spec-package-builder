@@ -124,15 +124,15 @@ GOARCH=arm64 GOOS=darwin CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/in
 %{__install} -m 755 incus-migrate %{buildroot}%{_bindir}/incus-migrate
 %{__install} -m 755 lxc-to-incus %{buildroot}%{_bindir}/lxc-to-incus
 %{__install} -m 755 lxd-to-incus %{buildroot}%{_bindir}/lxd-to-incus
-%{__install} -d %{buildroot}%{_prefix}/lib/incus/agent
-%{__install} -m 755 incus-agent.linux.x86_64 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.linux.x86_64
-%{__install} -m 755 incus-agent.linux.i686 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.linux.i686
-%{__install} -m 755 incus-agent.linux.aarch64 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.linux.aarch64
-%{__install} -m 755 incus-agent.windows.x86_64 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.windows.x86_64
-%{__install} -m 755 incus-agent.windows.i686 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.windows.i686
-%{__install} -m 755 incus-agent.windows.aarch64 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.windows.aarch64
-%{__install} -m 755 incus-agent.macos.x86_64 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.macos.x86_64
-%{__install} -m 755 incus-agent.macos.aarch64 %{buildroot}%{_prefix}/lib/incus/agent/incus-agent.macos.aarch64
+%{__install} -d %{buildroot}%{_datadir}/incus/agent
+%{__install} -m 755 incus-agent.linux.x86_64 %{buildroot}%{_datadir}/incus/agent/incus-agent.linux.x86_64
+%{__install} -m 755 incus-agent.linux.i686 %{buildroot}%{_datadir}/incus/agent/incus-agent.linux.i686
+%{__install} -m 755 incus-agent.linux.aarch64 %{buildroot}%{_datadir}/incus/agent/incus-agent.linux.aarch64
+%{__install} -m 755 incus-agent.windows.x86_64 %{buildroot}%{_datadir}/incus/agent/incus-agent.windows.x86_64
+%{__install} -m 755 incus-agent.windows.i686 %{buildroot}%{_datadir}/incus/agent/incus-agent.windows.i686
+%{__install} -m 755 incus-agent.windows.aarch64 %{buildroot}%{_datadir}/incus/agent/incus-agent.windows.aarch64
+%{__install} -m 755 incus-agent.macos.x86_64 %{buildroot}%{_datadir}/incus/agent/incus-agent.macos.x86_64
+%{__install} -m 755 incus-agent.macos.aarch64 %{buildroot}%{_datadir}/incus/agent/incus-agent.macos.aarch64
 cat <<EOF > %{buildroot}%{_unitdir}/incus.socket
 [Unit]
 Description=Incus - Container and Virtual Machine Manager (unix socket)
@@ -221,7 +221,7 @@ Also=incus-user.socket
 EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/incus
 ARGUMENTS="--group incus-admin"
-INCUS_AGENT_PATH=%{_prefix}/lib/incus/agent
+INCUS_AGENT_PATH=%{_datadir}/incus/agent
 EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/incus-user
 ARGUMENTS="--group incus"
@@ -312,13 +312,13 @@ EOF
 
 %files -n %{name}-agent
 %defattr(-,root,root,-)
-%dir %{_prefix}/lib/incus
-%dir %{_prefix}/lib/incus/agent
-%{_prefix}/lib/incus/agent/incus-agent.linux.x86_64
-%{_prefix}/lib/incus/agent/incus-agent.linux.i686
-%{_prefix}/lib/incus/agent/incus-agent.linux.aarch64
-%{_prefix}/lib/incus/agent/incus-agent.windows.x86_64
-%{_prefix}/lib/incus/agent/incus-agent.windows.i686
-%{_prefix}/lib/incus/agent/incus-agent.windows.aarch64
-%{_prefix}/lib/incus/agent/incus-agent.macos.x86_64
-%{_prefix}/lib/incus/agent/incus-agent.macos.aarch64
+%dir %{_datadir}/incus
+%dir %{_datadir}/incus/agent
+%{_datadir}/incus/agent/incus-agent.linux.x86_64
+%{_datadir}/incus/agent/incus-agent.linux.i686
+%{_datadir}/incus/agent/incus-agent.linux.aarch64
+%{_datadir}/incus/agent/incus-agent.windows.x86_64
+%{_datadir}/incus/agent/incus-agent.windows.i686
+%{_datadir}/incus/agent/incus-agent.windows.aarch64
+%{_datadir}/incus/agent/incus-agent.macos.x86_64
+%{_datadir}/incus/agent/incus-agent.macos.aarch64
