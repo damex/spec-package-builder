@@ -241,8 +241,8 @@ d /var/log/incus 0700 root root - -
 d /var/lib/incus 0711 root root - -
 d /run/incus 0711 root root - -
 EOF
-%{__install} -d %{buildroot}%{_prefix}/lib/sysctl.d
-cat <<EOF > %{buildroot}%{_prefix}/lib/sysctl.d/10-incus-inotify.conf
+%{__install} -d %{buildroot}%{_sysctldir}
+cat <<EOF > %{buildroot}%{_sysctldir}/10-incus-inotify.conf
 fs.aio-max-nr = 16777216
 fs.inotify.max_queued_events = 1048576
 fs.inotify.max_user_instances = 1048576
@@ -293,7 +293,7 @@ EOF
 %config(noreplace) %{_sysconfdir}/dnsmasq.d/incus.conf
 %{_sysusersdir}/incus.conf
 %{_tmpfilesdir}/incus.conf
-%{_prefix}/lib/sysctl.d/10-incus-inotify.conf
+%{_sysctldir}/10-incus-inotify.conf
 %dir %attr(711, root, root) %{_sharedstatedir}/incus
 %dir %attr(700, root, root) %{_localstatedir}/cache/incus
 %dir %attr(700, root, root) %{_localstatedir}/log/incus
