@@ -6,7 +6,7 @@
 
 Name: incus
 Version: 6.22.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: powerful system container and virtual machine manager
 License: ASL 2.0
 URL: https://github.com/lxc/incus
