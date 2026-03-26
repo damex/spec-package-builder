@@ -97,6 +97,7 @@ get_spec_sources:
 install_spec_build_dependencies:
 	rpm --eval '%{?rhel:epel-release}' | xargs --no-run-if-empty dnf --assumeyes install
 	rpm --eval '%{?rhel:crb}' | xargs --no-run-if-empty dnf config-manager --set-enabled
+	printf '[damex-incus]\nname=damex-incus\nbaseurl=https://yum-repositories.damex.org/incus/$(REDHAT_DISTRIBUTION_TYPE)/$(REDHAT_DISTRIBUTION_VERSION)/$(REDHAT_DISTRIBUTION_ARCHITECTURE)\ngpgcheck=1\ngpgkey=https://yum-repositories.damex.org/incus/$(GPG_ASCII_PUBLIC_KEY)\n' > /etc/yum.repos.d/damex-incus.repo
 	yum-builddep --assumeyes $(SPEC_FILE)
 
 build_package:
