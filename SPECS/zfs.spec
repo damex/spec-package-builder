@@ -4,7 +4,7 @@
 %define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %define _rpmdir %{_topdir}/RPMS/zfs/%{disttype}/%{distnum}
 %undefine source_date_epoch_from_changelog
-%global _dracutdir %{_prefix}/lib/dracut
+%global _dracutdir %(pkg-config --variable=dracutdir dracut)
 
 Name: zfs
 Version: 2.4.1
@@ -15,6 +15,7 @@ URL: https://openzfs.github.io/openzfs-docs/
 Source0: https://github.com/openzfs/zfs/releases/download/zfs-%{version}/zfs-%{version}.tar.gz
 ExclusiveArch: x86_64 aarch64
 %{?systemd_requires}
+BuildRequires: dracut
 BuildRequires: gcc
 BuildRequires: libaio-devel
 BuildRequires: libattr-devel
