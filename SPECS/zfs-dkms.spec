@@ -15,7 +15,7 @@ Summary: OpenZFS DKMS kernel modules
 License: CDDL-1.0
 URL: https://openzfs.github.io/openzfs-docs/
 Source0: https://github.com/openzfs/zfs/releases/download/zfs-%{version}/zfs-%{version}.tar.gz
-BuildArch: noarch
+ExclusiveArch: x86_64 aarch64
 Requires: dkms
 Requires: diffutils
 Requires: perl
