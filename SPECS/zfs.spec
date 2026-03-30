@@ -44,7 +44,6 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 %package -n %{name}-dracut
 Summary: OpenZFS dracut module
-BuildArch: noarch
 Requires: %{name} = %{version}-%{release}
 Requires: dracut
 
