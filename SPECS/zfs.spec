@@ -4,7 +4,7 @@
 %define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %define _rpmdir %{_topdir}/RPMS/zfs/%{disttype}/%{distnum}
 %undefine source_date_epoch_from_changelog
-%global _dracutdir %{_dracutdir}
+%global _dracutdir %{_prefix}/lib/dracut
 
 Name: zfs
 Version: 2.4.1
