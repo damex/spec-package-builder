@@ -4,6 +4,7 @@
 %define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %define _rpmdir %{_topdir}/RPMS/zfs/%{disttype}/%{distnum}
 %undefine source_date_epoch_from_changelog
+%global _dracutdir %{_dracutdir}
 
 Name: zfs
 Version: 2.4.1
@@ -74,7 +75,7 @@ PAM module for automatic unlocking of ZFS encrypted datasets at login.
     --with-mounthelperdir=%{_sbindir} \
     --with-udevdir=%{_prefix}/lib/udev \
     --with-udevruledir=%{_udevrulesdir} \
-    --with-dracutdir=%{_prefix}/lib/dracut \
+    --with-dracutdir=%{_dracutdir} \
     --with-pammoduledir=%{_libdir}/security \
     --with-pamconfigsdir=%{_datadir}/pam-configs \
     --with-pkgconfigdir=%{_libdir}/pkgconfig \
@@ -518,22 +519,22 @@ PAM module for automatic unlocking of ZFS encrypted datasets at login.
 %files -n %{name}-dracut
 %defattr(-,root,root,-)
 %license LICENSE
-%dir %{_prefix}/lib/dracut/modules.d/02zfsexpandknowledge
-%{_prefix}/lib/dracut/modules.d/02zfsexpandknowledge/module-setup.sh
-%dir %{_prefix}/lib/dracut/modules.d/90zfs
-%{_prefix}/lib/dracut/modules.d/90zfs/export-zfs.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/import-opts-generator.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/module-setup.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/mount-zfs.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/parse-zfs.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-env-bootfs.service
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-generator.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-lib.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-load-key.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-needshutdown.sh
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-nonroot-necessities.service
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-rollback-bootfs.service
-%{_prefix}/lib/dracut/modules.d/90zfs/zfs-snapshot-bootfs.service
+%dir %{_dracutdir}/modules.d/02zfsexpandknowledge
+%{_dracutdir}/modules.d/02zfsexpandknowledge/module-setup.sh
+%dir %{_dracutdir}/modules.d/90zfs
+%{_dracutdir}/modules.d/90zfs/export-zfs.sh
+%{_dracutdir}/modules.d/90zfs/import-opts-generator.sh
+%{_dracutdir}/modules.d/90zfs/module-setup.sh
+%{_dracutdir}/modules.d/90zfs/mount-zfs.sh
+%{_dracutdir}/modules.d/90zfs/parse-zfs.sh
+%{_dracutdir}/modules.d/90zfs/zfs-env-bootfs.service
+%{_dracutdir}/modules.d/90zfs/zfs-generator.sh
+%{_dracutdir}/modules.d/90zfs/zfs-lib.sh
+%{_dracutdir}/modules.d/90zfs/zfs-load-key.sh
+%{_dracutdir}/modules.d/90zfs/zfs-needshutdown.sh
+%{_dracutdir}/modules.d/90zfs/zfs-nonroot-necessities.service
+%{_dracutdir}/modules.d/90zfs/zfs-rollback-bootfs.service
+%{_dracutdir}/modules.d/90zfs/zfs-snapshot-bootfs.service
 %{_mandir}/man7/dracut.zfs.7*
 
 %files -n %{name}-pam
