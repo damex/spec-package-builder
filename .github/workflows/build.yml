@@ -65,3 +65,8 @@ jobs:
         with:
           name: incus-rpms-${{ matrix.spec_file }}-${{ inputs.docker_image_tag }}-${{ inputs.runner_image }}
           path: RPMS/incus
+      - if: ${{ inputs.sign }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: zfs-rpms-${{ matrix.spec_file }}-${{ inputs.docker_image_tag }}-${{ inputs.runner_image }}
+          path: RPMS/zfs
