@@ -127,6 +127,7 @@ jobs:
           - kubernetes
           - prometheus
           - incus
+          - zfs
         docker_image:
           - name: ghcr.io/almalinux/9-base
             tag: 9
