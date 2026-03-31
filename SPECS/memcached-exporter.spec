@@ -25,7 +25,7 @@ Prometheus exporter for Memcached server metrics.
 cd %{_builddir}/memcached_exporter-%{version}
 export GOFLAGS=-buildvcs=false
 go mod download
-go build -o $(pwd)/memcached-exporter
+go build -C cmd/memcached_exporter -o $(pwd)/memcached-exporter
 
 %install
 %{__install} -d %{buildroot}%{_bindir}
