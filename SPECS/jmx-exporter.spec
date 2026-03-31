@@ -14,7 +14,6 @@ Source: https://github.com/prometheus/jmx_exporter/archive/refs/tags/%{version}.
 %{?systemd_requires}
 BuildRequires: java-21-openjdk-devel
 Requires: java
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n jmx-exporter-agent
 Summary: JMX Exptorter (Agent)

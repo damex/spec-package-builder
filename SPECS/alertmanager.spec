@@ -15,7 +15,6 @@ Source: https://github.com/prometheus/alertmanager/archive/refs/tags/v%{version}
 Requires(pre): shadow-utils
 Requires: alertmanager-amtool
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n alertmanager-amtool
 Summary: Tooling for the Alertmanager

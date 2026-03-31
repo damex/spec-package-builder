@@ -14,7 +14,6 @@ Source: https://github.com/prometheus/blackbox_exporter/archive/refs/tags/v%{ver
 %{?systemd_requires}
 Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP and ICMP.

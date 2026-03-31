@@ -52,7 +52,6 @@ BuildRequires: lxc-devel
 BuildRequires: raft-devel
 BuildRequires: sqlite-devel
 BuildRequires: systemd-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n %{name}-client
 Summary: command line client for Incus

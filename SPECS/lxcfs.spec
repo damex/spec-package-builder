@@ -19,7 +19,6 @@ BuildRequires: python3-jinja2
 BuildRequires: systemd
 Requires: fuse3
 %{?systemd_requires}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 LXCFS is a small FUSE filesystem that makes Linux containers feel more

@@ -10,7 +10,6 @@ Release: 1%{?dist}
 Summary: damex zfs repository configuration
 License: MIT
 URL: https://yum-repositories.damex.org
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 

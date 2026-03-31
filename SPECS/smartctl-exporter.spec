@@ -14,7 +14,6 @@ Source: https://github.com/prometheus-community/smartctl_exporter/archive/refs/t
 %{?systemd_requires}
 Requires: smartmontools >= 1:7.0
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Export smartctl statistics to prometheus

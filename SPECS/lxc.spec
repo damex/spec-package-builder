@@ -23,7 +23,6 @@ BuildRequires: openssl-devel
 BuildRequires: pam-devel
 BuildRequires: systemd-devel
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n %{name}-libs
 Summary: runtime library files for LXC

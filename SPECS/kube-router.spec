@@ -13,7 +13,6 @@ URL: https://www.kube-router.io
 Source: https://github.com/cloudnativelabs/kube-router/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Kube-router is a turnkey solution for Kubernetes networking with aim to provide operational simplicity and high performance.

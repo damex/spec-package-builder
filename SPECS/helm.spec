@@ -12,7 +12,6 @@ License: ASL 2.0
 URL: https://helm.sh
 Source: https://github.com/helm/helm/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Helm is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources.

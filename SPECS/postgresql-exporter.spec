@@ -14,7 +14,6 @@ Source: https://github.com/prometheus-community/postgres_exporter/archive/refs/t
 %{?systemd_requires}
 Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Prometheus exporter for PostgreSQL server metrics.

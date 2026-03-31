@@ -14,7 +14,6 @@ Source: https://github.com/oliver006/redis_exporter/archive/refs/tags/v%{version
 %{?systemd_requires}
 Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Prometheus exporter for Valkey metrics (Redis-compatible).

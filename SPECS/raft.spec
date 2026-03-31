@@ -18,7 +18,6 @@ BuildRequires: gcc
 BuildRequires: libtool
 BuildRequires: libuv-devel
 BuildRequires: lz4-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n %{name}-devel
 Summary: Development files for raft

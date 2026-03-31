@@ -19,7 +19,6 @@ BuildRequires: libtool
 BuildRequires: libuv-devel
 BuildRequires: raft-devel
 BuildRequires: sqlite-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n %{name}-devel
 Summary: Development files for cowsql

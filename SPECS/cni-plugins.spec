@@ -16,7 +16,6 @@ Requires: cni-plugins-main = %{version}
 Requires: cni-plugins-ipam = %{version}
 Requires: cni-plugins-meta = %{version}
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n cni-plugins-main
 Summary: CNI network plugins (main)

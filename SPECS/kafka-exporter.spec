@@ -13,7 +13,6 @@ URL: https://github.com/danielqsj/kafka_exporter
 Source: https://github.com/danielqsj/kafka_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Kafka exporter for Prometheus.

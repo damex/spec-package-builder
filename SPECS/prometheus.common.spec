@@ -16,7 +16,6 @@ Source1: https://github.com/prometheus/prometheus/releases/download/v%{version}/
 Requires: prometheus-promtool
 Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package -n prometheus-promtool
 Summary: Tooling for the Prometheus monitoring system
