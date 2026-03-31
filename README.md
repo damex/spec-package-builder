@@ -128,6 +128,24 @@ gpgkey = https://yum-repositories.damex.org/prometheus/yum-repositories-2035-11-
 
 ### Add damex-incus repository with prebuilt packages
 
+To add `damex-incus` repository to `Red Hat Enterprise Linux 9` install the following package:
+
+```sh
+# x86_64
+https://yum-repositories.damex.org/incus/el/9/x86_64/damex-incus-release-0.1.1-1.el9.x86_64.rpm
+# aarch64
+https://yum-repositories.damex.org/incus/el/9/aarch64/damex-incus-release-0.1.1-1.el9.aarch64.rpm
+```
+
+To add `damex-incus` repository to `Red Hat Enterprise Linux 10` install the following package:
+
+```sh
+# x86_64
+https://yum-repositories.damex.org/incus/el/10/x86_64/damex-incus-release-0.1.1-1.el10.x86_64.rpm
+# aarch64
+https://yum-repositories.damex.org/incus/el/10/aarch64/damex-incus-release-0.1.1-1.el10.aarch64.rpm
+```
+
 To add `damex-incus` repository to `Fedora 43` install the following package:
 
 ```sh
@@ -139,12 +157,75 @@ https://yum-repositories.damex.org/incus/fc/43/aarch64/damex-incus-release-0.1.1
 
 Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-incus.repo`:
 
+For `Red Hat Enterprise Linux`:
+
 ```sh
 [damex-incus]
 name = damex-incus
-baseurl = https://yum-repositories.damex.org/incus/fc/43/$basearch
+baseurl = https://yum-repositories.damex.org/incus/el/$releasever/$basearch
 gpgcheck = 1
 gpgkey = https://yum-repositories.damex.org/incus/yum-repositories-2035-11-30.asc
+```
+
+For `Fedora`:
+
+```sh
+[damex-incus]
+name = damex-incus
+baseurl = https://yum-repositories.damex.org/incus/fc/$releasever/$basearch
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/incus/yum-repositories-2035-11-30.asc
+```
+
+### Add damex-zfs repository with prebuilt packages
+
+To add `damex-zfs` repository to `Red Hat Enterprise Linux 9` install the following package:
+
+```sh
+# x86_64
+https://yum-repositories.damex.org/zfs/el/9/x86_64/damex-zfs-release-0.1.0-1.el9.x86_64.rpm
+# aarch64
+https://yum-repositories.damex.org/zfs/el/9/aarch64/damex-zfs-release-0.1.0-1.el9.aarch64.rpm
+```
+
+To add `damex-zfs` repository to `Red Hat Enterprise Linux 10` install the following package:
+
+```sh
+# x86_64
+https://yum-repositories.damex.org/zfs/el/10/x86_64/damex-zfs-release-0.1.0-1.el10.x86_64.rpm
+# aarch64
+https://yum-repositories.damex.org/zfs/el/10/aarch64/damex-zfs-release-0.1.0-1.el10.aarch64.rpm
+```
+
+To add `damex-zfs` repository to `Fedora 43` install the following package:
+
+```sh
+# x86_64
+https://yum-repositories.damex.org/zfs/fc/43/x86_64/damex-zfs-release-0.1.0-1.fc43.x86_64.rpm
+# aarch64
+https://yum-repositories.damex.org/zfs/fc/43/aarch64/damex-zfs-release-0.1.0-1.fc43.aarch64.rpm
+```
+
+Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-zfs.repo`:
+
+For `Red Hat Enterprise Linux`:
+
+```sh
+[damex-zfs]
+name = damex-zfs
+baseurl = https://yum-repositories.damex.org/zfs/el/$releasever/$basearch
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/zfs/yum-repositories-2035-11-30.asc
+```
+
+For `Fedora`:
+
+```sh
+[damex-zfs]
+name = damex-zfs
+baseurl = https://yum-repositories.damex.org/zfs/fc/$releasever/$basearch
+gpgcheck = 1
+gpgkey = https://yum-repositories.damex.org/zfs/yum-repositories-2035-11-30.asc
 ```
 
 ### List of prebuilt packages
