@@ -259,6 +259,7 @@ gpgkey = https://yum-repositories.damex.org/zfs/yum-repositories-2035-11-30.asc
 | jmx-exporter         | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 43 |
 | jmx-exporter-agent   | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 43 |
 | kafka-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 43 |
+| memcached-exporter   | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 43 |
 | karma                | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 10, Fedora 43 |
 | node-exporter        | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 43 |
 | postgresql-exporter  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 43 |
