@@ -6,7 +6,7 @@
 
 Name: incus
 Version: 6.23.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: powerful system container and virtual machine manager
 License: ASL 2.0
 URL: https://github.com/lxc/incus
@@ -168,6 +168,7 @@ LimitCORE=infinity
 TasksMax=infinity
 Delegate=yes
 OOMScoreAdjust=-999
+Slice=incus.slice
 
 [Install]
 WantedBy=multi-user.target
@@ -217,6 +218,7 @@ Restart=always
 RestartSec=5s
 StartLimitInterval=0
 StartLimitBurst=0
+Slice=incus.slice
 
 [Install]
 WantedBy=multi-user.target
