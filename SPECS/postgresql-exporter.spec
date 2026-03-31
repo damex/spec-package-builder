@@ -62,13 +62,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sharedstatedir}/prometheus/postgresql-exporter-queries.yml
 ---
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/%{name}.conf
+u prometheus - "Prometheus daemon" %{_sharedstatedir}/prometheus /sbin/nologin
+EOF
 
 %pre
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-    -c "Prometheus daemon" prometheus
-exit 0
+%sysusers_create_compat %{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post postgresql-exporter.service
@@ -84,5 +84,6 @@ exit 0
 %{_bindir}/postgresql-exporter
 %{_unitdir}/postgresql-exporter.service
 %config(noreplace) %{_sysconfdir}/default/postgresql-exporter
+%{_sysusersdir}/%{name}.conf
 %config(noreplace) %{_sharedstatedir}/prometheus/postgresql-exporter-queries.yml
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus

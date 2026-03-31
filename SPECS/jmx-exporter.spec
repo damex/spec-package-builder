@@ -12,6 +12,7 @@ License: ASL 2.0
 URL: https://github.com/prometheus/jmx_exporter
 Source: https://github.com/prometheus/jmx_exporter/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
+Requires(pre): shadow-utils
 BuildRequires: java-21-openjdk-devel
 Requires: java
 
@@ -69,13 +70,13 @@ cat <<EOF > %{buildroot}%{_sysconfdir}/%{name}/%{name}.yml
 EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/%{name}-agent/%{name}-agent.yml
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/%{name}.conf
+u prometheus - "Prometheus daemon" %{_sharedstatedir}/prometheus /sbin/nologin
+EOF
 
 %pre
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-    -c "Prometheus daemon" prometheus
-exit 0
+%sysusers_create_compat %{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post %{name}.service
@@ -92,6 +93,7 @@ exit 0
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/default/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.yml
+%{_sysusersdir}/%{name}.conf
 
 %files -n jmx-exporter-agent
 %defattr(-,root,root,-)

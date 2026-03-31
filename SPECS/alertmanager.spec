@@ -70,13 +70,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/alertmanager
 ARGUMENTS="--config.file=%{_sysconfdir}/alertmanager/alertmanager.yml --storage.path=%{_sharedstatedir}/alertmanager"
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/%{name}.conf
+u prometheus - "Prometheus daemon" %{_sharedstatedir}/prometheus /sbin/nologin
+EOF
 
 %pre
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-    -c "Prometheus daemon" prometheus
-exit 0
+%sysusers_create_compat %{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post alertmanager.service
@@ -94,6 +94,7 @@ exit 0
 %config(noreplace) %{_sysconfdir}/alertmanager/alertmanager.yml
 %{_unitdir}/alertmanager.service
 %config(noreplace) %{_sysconfdir}/default/alertmanager
+%{_sysusersdir}/%{name}.conf
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/alertmanager
 
 %files -n alertmanager-amtool

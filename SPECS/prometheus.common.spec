@@ -69,13 +69,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/prometheus
 ARGUMENTS="--config.file=%{_sysconfdir}/prometheus/prometheus.yml --storage.tsdb.path=%{_sharedstatedir}/prometheus/data"
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/%{name}.conf
+u prometheus - "Prometheus daemon" %{_sharedstatedir}/prometheus /sbin/nologin
+EOF
 
 %pre
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-    -c "Prometheus daemon" prometheus
-exit 0
+%sysusers_create_compat %{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post prometheus.service
@@ -93,6 +93,7 @@ exit 0
 %config(noreplace) %{_sysconfdir}/prometheus/prometheus.yml
 %{_unitdir}/prometheus.service
 %config(noreplace) %{_sysconfdir}/default/prometheus
+%{_sysusersdir}/%{name}.conf
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus
 
 %files -n prometheus-promtool

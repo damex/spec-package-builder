@@ -12,6 +12,7 @@ License: ASL 2.0
 URL: https://github.com/danielqsj/kafka_exporter
 Source: https://github.com/danielqsj/kafka_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
+Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
 
 %description
@@ -56,13 +57,13 @@ EOF
 cat <<EOF > %{buildroot}%{_sysconfdir}/default/kafka-exporter
 ARGUMENTS=""
 EOF
+%{__install} -d %{buildroot}%{_sysusersdir}
+cat <<EOF > %{buildroot}%{_sysusersdir}/%{name}.conf
+u prometheus - "Prometheus daemon" %{_sharedstatedir}/prometheus /sbin/nologin
+EOF
 
 %pre
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-    -c "Prometheus daemon" prometheus
-exit 0
+%sysusers_create_compat %{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post kafka-exporter.service
@@ -78,3 +79,4 @@ exit 0
 %{_bindir}/kafka-exporter
 %{_unitdir}/kafka-exporter.service
 %config(noreplace) %{_sysconfdir}/default/kafka-exporter
+%{_sysusersdir}/%{name}.conf
