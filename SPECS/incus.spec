@@ -158,7 +158,10 @@ EnvironmentFile=%{_sysconfdir}/default/incus
 ExecStart=%{_bindir}/incusd \$ARGUMENTS
 ExecStartPost=%{_bindir}/incusd waitready --timeout=600
 KillMode=process
-Restart=on-failure
+Restart=always
+RestartSec=5s
+StartLimitInterval=0
+StartLimitBurst=0
 TimeoutStartSec=600s
 TimeoutStopSec=330s
 LimitNOFILE=1048576
