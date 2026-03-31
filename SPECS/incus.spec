@@ -108,7 +108,6 @@ GOARCH=amd64 GOOS=darwin CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/in
 GOARCH=arm64 GOOS=darwin CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/incus-agent.macos.aarch64 ./cmd/incus-agent
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default
