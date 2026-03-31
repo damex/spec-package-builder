@@ -27,7 +27,6 @@ go mod download
 go build -o %{name}
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -m 755 rsyslog-exporter %{buildroot}%{_bindir}/rsyslog-exporter
 

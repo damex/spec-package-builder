@@ -26,7 +26,6 @@ go mod download
 go build -C cmd/helm -o $(pwd)/helm
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -m 755 helm %{buildroot}%{_bindir}/helm
 

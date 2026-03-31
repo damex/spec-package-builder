@@ -26,7 +26,6 @@ go mod download
 go build -o $(pwd)/flanneld
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -m 755 flanneld %{buildroot}%{_bindir}/flanneld
 

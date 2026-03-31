@@ -33,7 +33,6 @@ cd %{_builddir}/jmx_exporter-%{version}
 ./mvnw clean package
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default

@@ -69,7 +69,6 @@ go build -C plugins/meta/tuning -o $(pwd)/tuning
 go build -C plugins/meta/vrf -o $(pwd)/vrf
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{cni_bindir}
 # main
 %{__install} -m 755 bridge %{buildroot}%{cni_bindir}/bridge

@@ -37,7 +37,6 @@ export GOFLAGS=-buildvcs=false
 make PREBUILT_ASSETS_STATIC_DIR=web/ui/static build
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_sharedstatedir}/prometheus
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default

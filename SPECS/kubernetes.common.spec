@@ -69,7 +69,6 @@ go build -C cmd/kubectl -o $(pwd)/kubectl
 go build -C cmd/kubectl-convert -o $(pwd)/kubectl-convert
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_sharedstatedir}/kubernetes
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default

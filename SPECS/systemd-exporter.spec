@@ -28,7 +28,6 @@ go mod download
 go build -o $(pwd)/systemd-exporter
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default

@@ -28,7 +28,6 @@ export GOFLAGS=-buildvcs=false
 make
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default
 %{__install} -d %{buildroot}%{_unitdir}

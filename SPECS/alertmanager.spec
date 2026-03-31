@@ -38,7 +38,6 @@ go build -C cmd/alertmanager -o $(pwd)/alertmanager
 go build -C cmd/amtool -o $(pwd)/amtool
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_sharedstatedir}/alertmanager
 %{__install} -d %{buildroot}%{_sysconfdir}/default

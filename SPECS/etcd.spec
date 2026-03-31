@@ -64,7 +64,6 @@ go mod download -C tools/etcd-dump-metrics
 go build -C tools/etcd-dump-metrics -o $(pwd)/etcd-dump-metrics
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_sharedstatedir}/etcd
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default

@@ -19,7 +19,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %build
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_sysconfdir}/yum.repos.d
 cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-kubernetes.repo
 [damex-kubernetes]

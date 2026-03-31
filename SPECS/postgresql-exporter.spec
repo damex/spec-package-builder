@@ -29,7 +29,6 @@ go mod download
 go build -C cmd/postgres_exporter -o $(pwd)/postgresql-exporter
 
 %install
-%{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir}
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -d %{buildroot}%{_sysconfdir}/default
