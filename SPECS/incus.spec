@@ -215,8 +215,10 @@ Requires=incus.service
 [Service]
 EnvironmentFile=%{_sysconfdir}/default/incus-user
 ExecStart=%{_bindir}/incus-user \$ARGUMENTS
-Restart=on-failure
+Restart=always
 RestartSec=5s
+StartLimitInterval=0
+StartLimitBurst=0
 
 [Install]
 WantedBy=multi-user.target
