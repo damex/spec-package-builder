@@ -6,7 +6,7 @@
 
 Name: incus
 Version: 6.23.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: powerful system container and virtual machine manager
 License: ASL 2.0
 URL: https://github.com/lxc/incus
@@ -259,6 +259,12 @@ EOF
 %sysusers_create_compat %{_sysusersdir}/incus.conf
 
 %post
+if ! grep -q "^root:" /etc/subuid; then
+    usermod --add-subuids 1000000-1999999999 root
+fi
+if ! grep -q "^root:" /etc/subgid; then
+    usermod --add-subgids 1000000-1999999999 root
+fi
 %systemd_post incus.socket
 %systemd_post incus.service
 %systemd_post incus-startup.service
