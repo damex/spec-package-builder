@@ -292,6 +292,7 @@ fi
 
 %files
 %defattr(-,root,root,-)
+%license COPYING
 %{_bindir}/incusd
 %{_bindir}/incus-user
 %{_unitdir}/incus.socket
@@ -311,10 +312,12 @@ fi
 
 %files -n %{name}-client
 %defattr(-,root,root,-)
+%license COPYING
 %{_bindir}/incus
 
 %files -n %{name}-tools
 %defattr(-,root,root,-)
+%license COPYING
 %{_bindir}/fuidshift
 %{_bindir}/incus-benchmark
 %{_bindir}/incus-migrate
@@ -323,6 +326,7 @@ fi
 
 %files -n %{name}-agent
 %defattr(-,root,root,-)
+%license COPYING
 %dir %{_datadir}/incus
 %dir %{_datadir}/incus/agent
 %{_datadir}/incus/agent/incus-agent.linux.x86_64
