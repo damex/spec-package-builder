@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: node-exporter
-Version: 1.10.2
+Version: 1.11.0
 Release: 1%{?dist}
 Summary: Prometheus Node Exporter
 License: ASL 2.0
