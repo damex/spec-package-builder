@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: alertmanager
-Version: 0.31.1
+Version: 0.32.0
 Release: 1%{?dist}
 Summary: The Alertmanager handles alerts sent by client applications such as the Prometheus server.
 License: ASL 2.0
@@ -15,6 +15,8 @@ Source: https://github.com/prometheus/alertmanager/archive/refs/tags/v%{version}
 Requires(pre): shadow-utils
 Requires: alertmanager-amtool
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
+BuildRequires: nodejs
+BuildRequires: %{?el9:npm}%{!?el9:nodejs-npm}
 
 %package -n alertmanager-amtool
 Summary: Tooling for the Alertmanager
@@ -31,6 +33,9 @@ Tooling for the Alertmanager
 %autosetup
 
 %build
+sed -i 's|app/dist|mantine-ui/dist|g' ui/web.go
+npm --prefix ui/mantine-ui ci
+npm --prefix ui/mantine-ui run build
 export GOFLAGS=-buildvcs=false
 go mod download
 go build -C cmd/alertmanager -o $(pwd)/alertmanager
