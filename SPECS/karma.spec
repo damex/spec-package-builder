@@ -15,6 +15,7 @@ Source: https://github.com/prymitive/karma/archive/refs/tags/v%{version}.tar.gz#
 Requires(pre): shadow-utils
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRequires: nodejs
+BuildRequires: %{?el9:npm}%{!?el9:nodejs-npm}
 
 %description
 Alert dashboard for Prometheus Alertmanager.
