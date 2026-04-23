@@ -1,0 +1,1 @@
+../kubernetes-1.36.spec
