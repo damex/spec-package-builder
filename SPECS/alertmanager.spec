@@ -3,6 +3,8 @@
 %define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %define _rpmdir %{_topdir}/RPMS/prometheus/%{disttype}/%{distnum}
 %undefine source_date_epoch_from_changelog
+# HEAD as of 2025-12-11: includes GHC 9.4+/9.8 compat fixes (word8ToWord# in Data/Utf8.hs)
+%define elm_compiler_commit cce7a8bbd8fe690fc83fa795f8d7e02505d1f25f
 
 Name: alertmanager
 Version: 0.32.0
@@ -11,12 +13,18 @@ Summary: The Alertmanager handles alerts sent by client applications such as the
 License: ASL 2.0
 URL: https://prometheus.io
 Source: https://github.com/prometheus/alertmanager/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# elm compiler built from source - no official arm64 binary, and HEAD has GHC 9.4+/9.8 fixes
+Source1: https://github.com/elm/compiler/archive/%{elm_compiler_commit}.tar.gz#/elm-compiler-%{elm_compiler_commit}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
 Requires: alertmanager-amtool
 BuildRequires: golang >= 1.25.0, golang < 1.26.0
 BuildRequires: nodejs
 BuildRequires: %{?el9:npm}%{!?el9:nodejs-npm}
+# elm
+BuildRequires: ghc
+BuildRequires: cabal-install
+BuildRequires: gcc-c++
 
 %package -n alertmanager-amtool
 Summary: Tooling for the Alertmanager
@@ -30,12 +38,21 @@ PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts
 Tooling for the Alertmanager
 
 %prep
-%autosetup
+%autosetup -a 1
 
 %build
-sed -i 's|app/dist|mantine-ui/dist|g' ui/web.go
-npm --prefix ui/mantine-ui ci
-npm --prefix ui/mantine-ui run build
+# build elm compiler from source
+cd compiler-%{elm_compiler_commit}
+cabal update
+cabal v1-install --only-dependencies --disable-library-profiling
+cabal v1-configure
+cabal v1-build
+cd ..
+# skip elm download hook, place our compiled binary where npm package expects it
+npm --prefix ui/app ci --ignore-scripts
+%{__install} -m 755 compiler-%{elm_compiler_commit}/dist/build/elm/elm ui/app/node_modules/elm/bin/elm
+# build elm UI assets
+npm --prefix ui/app run build
 export GOFLAGS=-buildvcs=false
 go mod download
 go build -C cmd/alertmanager -o $(pwd)/alertmanager
