@@ -5,12 +5,12 @@
 %undefine source_date_epoch_from_changelog
 
 Name: incus
-Version: 6.23.0
-Release: 3%{?dist}
+Version: 6.23
+Release: 1%{?dist}
 Summary: powerful system container and virtual machine manager
 License: ASL 2.0
-URL: https://github.com/lxc/incus
-Source: https://github.com/lxc/incus/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+URL: https://linuxcontainers.org/incus
+Source: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz
 %{?systemd_requires}
 Requires(pre): shadow-utils
 Requires: %{name}-client = %{version}-%{release}
