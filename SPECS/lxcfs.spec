@@ -6,7 +6,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: lxcfs
-Version: 6.0.6
+Version: 7.0.0
 Release: 1%{?dist}
 Summary: FUSE filesystem for containers
 License: LGPL-2.1-or-later
