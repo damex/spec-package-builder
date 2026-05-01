@@ -6,7 +6,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: lxc
-Version: 6.0.6
+Version: 7.0.0
 Release: 1%{?dist}
 Summary: Linux Resource Containers
 License: LGPLv2.1+
