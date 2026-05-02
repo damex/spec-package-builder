@@ -7,7 +7,7 @@
 
 Name: lxc
 Version: 7.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Linux Resource Containers
 License: LGPLv2.1+
 URL: https://linuxcontainers.org/lxc
@@ -23,6 +23,7 @@ BuildRequires: openssl-devel
 BuildRequires: pam-devel
 BuildRequires: systemd-devel
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+Requires: %{name}-templates%{?_isa} = %{version}-%{release}
 
 %package -n %{name}-libs
 Summary: runtime library files for LXC
@@ -31,6 +32,10 @@ Requires: rsync
 
 %package -n %{name}-devel
 Summary: development files for LXC
+Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+
+%package -n %{name}-templates
+Summary: templates for %{name}
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description
@@ -43,6 +48,9 @@ without the overhead of full virtualization.
 
 %description -n %{name}-devel
 Development headers and pkg-config files for building against liblxc.
+
+%description -n %{name}-templates
+Templates for creating LXC containers.
 
 %prep
 %autosetup
@@ -170,13 +178,6 @@ Development headers and pkg-config files for building against liblxc.
 %{_unitdir}/%{name}-monitord.service
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/config
-%dir %{_datadir}/%{name}/config/common.conf.d
-%{_datadir}/%{name}/config/common.conf
-%{_datadir}/%{name}/config/common.conf.d/README
-%{_datadir}/%{name}/config/common.seccomp
-%{_datadir}/%{name}/config/nesting.conf
-%{_datadir}/%{name}/config/oci.common.conf
-%{_datadir}/%{name}/config/userns.conf
 %dir %{_datadir}/%{name}/hooks
 %{_datadir}/%{name}/hooks/clonehostname
 %{_datadir}/%{name}/hooks/dhclient
@@ -188,11 +189,6 @@ Development headers and pkg-config files for building against liblxc.
 %dir %{_datadir}/%{name}/selinux
 %{_datadir}/%{name}/selinux/%{name}.if
 %{_datadir}/%{name}/selinux/%{name}.te
-%dir %{_datadir}/%{name}/templates
-%{_datadir}/%{name}/templates/%{name}-busybox
-%{_datadir}/%{name}/templates/%{name}-download
-%{_datadir}/%{name}/templates/%{name}-local
-%{_datadir}/%{name}/templates/%{name}-oci
 %license COPYING
 %dir %{_sharedstatedir}/%{name}
 %dir %{_localstatedir}/cache/%{name}
@@ -205,3 +201,18 @@ Development headers and pkg-config files for building against liblxc.
 %{_includedir}/%{name}/version.h
 %{_libdir}/liblxc.so
 %{_libdir}/pkgconfig/%{name}.pc
+
+%files -n %{name}-templates
+%defattr(-,root,root,-)
+%dir %{_datadir}/%{name}/templates
+%{_datadir}/%{name}/templates/%{name}-busybox
+%{_datadir}/%{name}/templates/%{name}-download
+%{_datadir}/%{name}/templates/%{name}-local
+%{_datadir}/%{name}/templates/%{name}-oci
+%dir %{_datadir}/%{name}/config/common.conf.d
+%{_datadir}/%{name}/config/common.conf
+%{_datadir}/%{name}/config/common.conf.d/README
+%{_datadir}/%{name}/config/common.seccomp
+%{_datadir}/%{name}/config/nesting.conf
+%{_datadir}/%{name}/config/oci.common.conf
+%{_datadir}/%{name}/config/userns.conf
