@@ -152,7 +152,7 @@ Development headers and pkg-config files for building against liblxc.
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %{_sbindir}/init.%{name}
 %{_libdir}/liblxc.so.1
-%{_libdir}/liblxc.so.1.8.0
+%{_libdir}/liblxc.so.1.9.0
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/rootfs
 %{_libdir}/%{name}/rootfs/README
