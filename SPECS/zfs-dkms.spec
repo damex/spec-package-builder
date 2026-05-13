@@ -9,7 +9,7 @@
 %define module zfs
 
 Name: %{module}-dkms
-Version: 2.4.1
+Version: 2.4.2
 Release: 1%{?dist}
 Summary: OpenZFS DKMS kernel modules
 License: CDDL-1.0
