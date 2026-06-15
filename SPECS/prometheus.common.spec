@@ -14,7 +14,7 @@ Source: https://github.com/prometheus/prometheus/archive/refs/tags/v%{version}.t
 %{?systemd_requires}
 Requires: prometheus-promtool
 Requires(pre): shadow-utils
-BuildRequires: golang >= 1.25.0, golang < 1.26.0
+BuildRequires: golang >= 1.26.0, golang < 1.27.0
 BuildRequires: nodejs
 BuildRequires: %{?el9:npm}%{!?el9:nodejs-npm}
 

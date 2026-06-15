@@ -13,7 +13,7 @@ URL: https://github.com/prometheus/node_exporter
 Source: https://github.com/prometheus/node_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
-BuildRequires: golang >= 1.25.0, golang < 1.26.0
+BuildRequires: golang >= 1.26.0, golang < 1.27.0
 
 %description
 Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.

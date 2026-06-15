@@ -13,7 +13,7 @@ URL: https://github.com/letsencrypt/unbound_exporter
 Source: https://github.com/letsencrypt/unbound_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
-BuildRequires: golang >= 1.25.0, golang < 1.26.0
+BuildRequires: golang >= 1.26.0, golang < 1.27.0
 
 %description
 Prometheus exporter for Unbound metrics, written in Go with pluggable metric collectors. The metrics exporter converts Unbound metric names to Prometheus metric names and labels by using a set of regular expressions.

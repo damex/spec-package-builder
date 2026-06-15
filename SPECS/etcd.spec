@@ -13,7 +13,7 @@ URL: https://etcd.io
 Source: https://github.com/etcd-io/etcd/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
-BuildRequires: golang >= 1.25.0, golang < 1.26.0
+BuildRequires: golang >= 1.26.0, golang < 1.27.0
 
 %package -n etcd-etcdctl
 Summary: Command line client for etcd

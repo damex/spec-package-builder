@@ -15,7 +15,7 @@ Source: https://github.com/containernetworking/plugins/archive/refs/tags/v%{vers
 Requires: cni-plugins-main = %{version}
 Requires: cni-plugins-ipam = %{version}
 Requires: cni-plugins-meta = %{version}
-BuildRequires: golang >= 1.25.0, golang < 1.26.0
+BuildRequires: golang >= 1.26.0, golang < 1.27.0
 
 %package -n cni-plugins-main
 Summary: CNI network plugins (main)
