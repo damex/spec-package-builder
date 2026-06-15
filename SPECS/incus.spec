@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: incus
-Version: 7.0.0
+Version: 7.1
 Release: 1%{?dist}
 Summary: powerful system container and virtual machine manager
 License: ASL 2.0
