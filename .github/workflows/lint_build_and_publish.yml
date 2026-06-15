@@ -78,35 +78,35 @@ jobs:
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-  lint_fc43:
+  lint_fc44:
     uses: ./.github/workflows/lint.yml
     with:
-      codename: fc43
+      codename: fc44
       docker_image_name: registry.fedoraproject.org/fedora
-      docker_image_tag: "43"
+      docker_image_tag: "44"
 
-  build_fc43_x86_64:
+  build_fc44_x86_64:
     needs:
-      - lint_fc43
+      - lint_fc44
     uses: ./.github/workflows/build.yml
     with:
-      codename: fc43
+      codename: fc44
       docker_image_name: registry.fedoraproject.org/fedora
-      docker_image_tag: "43"
+      docker_image_tag: "44"
       runner_image: ubuntu-24.04
       sign: true
     secrets:
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-  build_fc43_aarch64:
+  build_fc44_aarch64:
     needs:
-      - lint_fc43
+      - lint_fc44
     uses: ./.github/workflows/build.yml
     with:
-      codename: fc43
+      codename: fc44
       docker_image_name: registry.fedoraproject.org/fedora
-      docker_image_tag: "43"
+      docker_image_tag: "44"
       runner_image: ubuntu-24.04-arm
       sign: true
     secrets:
@@ -119,8 +119,8 @@ jobs:
       - build_el9_aarch64
       - build_el10_x86_64
       - build_el10_aarch64
-      - build_fc43_x86_64
-      - build_fc43_aarch64
+      - build_fc44_x86_64
+      - build_fc44_aarch64
     strategy:
       matrix:
         repository:
@@ -134,7 +134,7 @@ jobs:
           - name: ghcr.io/almalinux/10-base
             tag: 10
           - name: registry.fedoraproject.org/fedora
-            tag: 43
+            tag: 44
         runner_image:
           - ubuntu-24.04
           - ubuntu-24.04-arm
