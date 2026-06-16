@@ -1,1 +1,0 @@
-../kube-router.spec

@@ -1,1 +1,0 @@
-../damex-zfs-release.spec

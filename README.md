@@ -8,7 +8,7 @@ It includes a `Makefile` that builds packages natively on `Red Hat Enterprise Li
 
 The `Makefile` accepts `SPEC_FILE` as a mandatory input, allowing you to specify the path to the spec file included in the `SPECS` directory.
 
-Currently, packages and their corresponding spec files are built and tested only for `Red Hat Enterprise Linux 9`, `Red Hat Enterprise Linux 10` and its derivatives like `Alma Linux 9`, `Alma Linux 10`, `Rocky Linux 9` and `Rocky Linux 10`, as well as `Fedora 44`.
+Currently, packages and their corresponding spec files are built and tested only for `Red Hat Enterprise Linux 9`, `Red Hat Enterprise Linux 10` and its derivatives like `Alma Linux 9`, `Alma Linux 10`, `Rocky Linux 9` and `Rocky Linux 10`.
 
 [Follow here if you want to build packages yourself](#Usage).
 
@@ -146,33 +146,12 @@ https://yum-repositories.damex.org/incus/el/10/x86_64/damex-incus-release-0.1.1-
 https://yum-repositories.damex.org/incus/el/10/aarch64/damex-incus-release-0.1.1-1.el10.aarch64.rpm
 ```
 
-To add `damex-incus` repository to `Fedora 44` install the following package:
-
-```sh
-# x86_64
-https://yum-repositories.damex.org/incus/fc/44/x86_64/damex-incus-release-0.1.1-1.fc44.x86_64.rpm
-# aarch64
-https://yum-repositories.damex.org/incus/fc/44/aarch64/damex-incus-release-0.1.1-1.fc44.aarch64.rpm
-```
-
 Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-incus.repo`:
-
-For `Red Hat Enterprise Linux`:
 
 ```sh
 [damex-incus]
 name = damex-incus
 baseurl = https://yum-repositories.damex.org/incus/el/$releasever/$basearch
-gpgcheck = 1
-gpgkey = https://yum-repositories.damex.org/incus/yum-repositories-2035-11-30.asc
-```
-
-For `Fedora`:
-
-```sh
-[damex-incus]
-name = damex-incus
-baseurl = https://yum-repositories.damex.org/incus/fc/$releasever/$basearch
 gpgcheck = 1
 gpgkey = https://yum-repositories.damex.org/incus/yum-repositories-2035-11-30.asc
 ```
@@ -197,18 +176,7 @@ https://yum-repositories.damex.org/zfs/el/10/x86_64/damex-zfs-release-0.1.0-1.el
 https://yum-repositories.damex.org/zfs/el/10/aarch64/damex-zfs-release-0.1.0-1.el10.aarch64.rpm
 ```
 
-To add `damex-zfs` repository to `Fedora 44` install the following package:
-
-```sh
-# x86_64
-https://yum-repositories.damex.org/zfs/fc/44/x86_64/damex-zfs-release-0.1.0-1.fc44.x86_64.rpm
-# aarch64
-https://yum-repositories.damex.org/zfs/fc/44/aarch64/damex-zfs-release-0.1.0-1.fc44.aarch64.rpm
-```
-
 Alternatively, it can be done manually by adding the following configuration to `/etc/yum.repos.d/damex-zfs.repo`:
-
-For `Red Hat Enterprise Linux`:
 
 ```sh
 [damex-zfs]
@@ -218,73 +186,63 @@ gpgcheck = 1
 gpgkey = https://yum-repositories.damex.org/zfs/yum-repositories-2035-11-30.asc
 ```
 
-For `Fedora`:
-
-```sh
-[damex-zfs]
-name = damex-zfs
-baseurl = https://yum-repositories.damex.org/zfs/fc/$releasever/$basearch
-gpgcheck = 1
-gpgkey = https://yum-repositories.damex.org/zfs/yum-repositories-2035-11-30.asc
-```
-
 ### List of prebuilt packages
 
 | Package              | Repository | Architecture | Distributives              |
 |----------------------|------------|--------------|----------------------------|
-| cni-plugins          | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| cni-plugins-ipam     | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| cni-plugins-main     | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| cni-plugins-meta     | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd                 | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd-benchmark       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd-dump-db         | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd-dump-logs       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd-dump-metrics    | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd-etcdctl         | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| etcd-etcdutl         | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| flannel              | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| helm                 | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kube-apiserver       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kube-controller-manager | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kube-proxy           | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kube-router          | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kube-scheduler       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kubectl              | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kubectl-convert      | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kubelet              | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| alertmanager         | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| alertmanager-amtool  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| blackbox-exporter    | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| jmx-exporter         | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| jmx-exporter-agent   | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| kafka-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| memcached-exporter   | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| karma                | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 10, Fedora 44 |
-| node-exporter        | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| postgresql-exporter  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| prometheus           | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| prometheus-promtool  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| redis-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| rsyslog-exporter     | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| smartctl-exporter    | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| systemd-exporter     | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| unbound-exporter     | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| cowsql               | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| cowsql-devel         | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| incus                | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| incus-agent          | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| incus-client         | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| incus-tools          | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| lxc                  | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| lxc-devel            | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| lxc-libs             | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| lxcfs                | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| raft                 | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| raft-devel           | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| zfs                  | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| zfs-devel            | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| zfs-dkms             | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| zfs-dracut           | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| zfs-libs             | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
-| zfs-pam              | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10, Fedora 44 |
+| cni-plugins          | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| cni-plugins-ipam     | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| cni-plugins-main     | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| cni-plugins-meta     | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd                 | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd-benchmark       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd-dump-db         | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd-dump-logs       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd-dump-metrics    | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd-etcdctl         | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| etcd-etcdutl         | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| flannel              | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| helm                 | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kube-apiserver       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kube-controller-manager | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kube-proxy           | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kube-router          | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kube-scheduler       | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kubectl              | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kubectl-convert      | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kubelet              | damex-kubernetes | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| alertmanager         | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| alertmanager-amtool  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| blackbox-exporter    | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| jmx-exporter         | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| jmx-exporter-agent   | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| kafka-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| memcached-exporter   | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| karma                | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 10 |
+| node-exporter        | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| postgresql-exporter  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| prometheus           | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| prometheus-promtool  | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| redis-exporter       | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| rsyslog-exporter     | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| smartctl-exporter    | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| systemd-exporter     | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| unbound-exporter     | damex-prometheus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| cowsql               | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| cowsql-devel         | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| incus                | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| incus-agent          | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| incus-client         | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| incus-tools          | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| lxc                  | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| lxc-devel            | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| lxc-libs             | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| lxcfs                | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| raft                 | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| raft-devel           | damex-incus | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| zfs                  | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| zfs-devel            | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| zfs-dkms             | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| zfs-dracut           | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| zfs-libs             | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |
+| zfs-pam              | damex-zfs | x86_64, aarch64 | Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 10 |

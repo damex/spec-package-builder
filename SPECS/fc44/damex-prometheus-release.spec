@@ -1,1 +1,0 @@
-../damex-prometheus-release.spec

@@ -1,1 +1,0 @@
-../smartctl-exporter.spec

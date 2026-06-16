@@ -1,1 +1,0 @@
-../prometheus-3.5.spec
