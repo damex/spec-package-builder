@@ -5,12 +5,13 @@
 %undefine source_date_epoch_from_changelog
 
 Name: alertmanager
-Version: 0.31.1
+Version: 0.33.1
 Release: 1%{?dist}
 Summary: The Alertmanager handles alerts sent by client applications such as the Prometheus server.
 License: ASL 2.0
 URL: https://prometheus.io
-Source: https://github.com/prometheus/alertmanager/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: https://github.com/prometheus/alertmanager/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1: https://github.com/prometheus/alertmanager/releases/download/v%{version}/alertmanager-web-ui-%{version}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
 Requires: alertmanager-amtool
@@ -28,7 +29,8 @@ PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts
 Tooling for the Alertmanager
 
 %prep
-%autosetup
+%autosetup -a 1
+%{__mv} dist ui/app/dist
 
 %build
 export GOFLAGS=-buildvcs=false
