@@ -1,2 +1,2 @@
-%global prometheus_version 3.12.0
+%global prometheus_version 3.13.1
 %include SPECS/prometheus.common.spec

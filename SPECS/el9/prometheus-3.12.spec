@@ -1,1 +1,0 @@
-../prometheus-3.12.spec
