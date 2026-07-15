@@ -5,7 +5,7 @@
 %undefine source_date_epoch_from_changelog
 
 Name: postgresql-exporter
-Version: 0.19.1
+Version: 0.20.1
 Release: 1%{?dist}
 Summary: Prometheus PostgreSQL Metrics Exporter
 License: ASL 2.0
