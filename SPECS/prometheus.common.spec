@@ -10,13 +10,12 @@ Release: 1%{?dist}
 Summary: monitoring system and time series database
 License: ASL 2.0
 URL: https://prometheus.io
-Source: https://github.com/prometheus/prometheus/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: https://github.com/prometheus/prometheus/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1: https://github.com/prometheus/prometheus/releases/download/v%{version}/prometheus-web-ui-%{version}.tar.gz
 %{?systemd_requires}
 Requires: prometheus-promtool
 Requires(pre): shadow-utils
 BuildRequires: golang >= 1.26.0, golang < 1.27.0
-BuildRequires: nodejs
-BuildRequires: %{?el9:npm}%{!?el9:nodejs-npm}
 
 %package -n prometheus-promtool
 Summary: Tooling for the Prometheus monitoring system
@@ -29,11 +28,11 @@ It collects metrics from configured targets at given intervals, evaluates rule e
 Tooling for the Prometheus monitoring system
 
 %prep
-%autosetup
+%autosetup -a 1
 
 %build
 export GOFLAGS=-buildvcs=false
-make build
+make build PREBUILT_ASSETS_STATIC_DIR=$(pwd)/static
 
 %install
 %{__install} -d %{buildroot}%{_sharedstatedir}/prometheus
