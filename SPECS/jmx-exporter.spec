@@ -5,12 +5,12 @@
 %undefine source_date_epoch_from_changelog
 
 Name: jmx-exporter
-Version: 1.5.0
+Version: 1.6.0
 Release: 1%{?dist}
 Summary: JMX Exporter (Standalone)
 License: ASL 2.0
 URL: https://github.com/prometheus/jmx_exporter
-Source: https://github.com/prometheus/jmx_exporter/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source: https://github.com/prometheus/jmx_exporter/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 %{?systemd_requires}
 Requires(pre): shadow-utils
 BuildRequires: java-21-openjdk-devel
