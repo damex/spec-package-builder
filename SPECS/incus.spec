@@ -91,7 +91,6 @@ export CGO_LDFLAGS_ALLOW="(-Wl,-wrap,pthread_create)|(-Wl,-z,now)"
 go mod download
 go build -tags libsqlite3 -o $(pwd)/incusd ./cmd/incusd
 go build -tags libsqlite3 -o $(pwd)/incus-user ./cmd/incus-user
-go build -tags libsqlite3 -o $(pwd)/lxd-to-incus ./cmd/lxd-to-incus
 go build -o $(pwd)/incus ./cmd/incus
 go build -o $(pwd)/fuidshift ./cmd/fuidshift
 go build -o $(pwd)/incus-benchmark ./cmd/incus-benchmark
@@ -121,7 +120,6 @@ GOARCH=arm64 GOOS=darwin CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/in
 %{__install} -m 755 incus-benchmark %{buildroot}%{_bindir}/incus-benchmark
 %{__install} -m 755 incus-migrate %{buildroot}%{_bindir}/incus-migrate
 %{__install} -m 755 lxc-to-incus %{buildroot}%{_bindir}/lxc-to-incus
-%{__install} -m 755 lxd-to-incus %{buildroot}%{_bindir}/lxd-to-incus
 %{__install} -d %{buildroot}%{_datadir}/incus/agent
 %{__install} -m 755 incus-agent.linux.x86_64 %{buildroot}%{_datadir}/incus/agent/incus-agent.linux.x86_64
 %{__install} -m 755 incus-agent.linux.i686 %{buildroot}%{_datadir}/incus/agent/incus-agent.linux.i686
@@ -322,7 +320,6 @@ fi
 %{_bindir}/incus-benchmark
 %{_bindir}/incus-migrate
 %{_bindir}/lxc-to-incus
-%{_bindir}/lxd-to-incus
 
 %files -n %{name}-agent
 %defattr(-,root,root,-)
