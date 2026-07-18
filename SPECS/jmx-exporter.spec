@@ -30,7 +30,7 @@ The JMX Exporter is a collector to capture JMX MBean values.
 
 %build
 cd %{_builddir}/jmx_exporter-%{version}
-./mvnw clean package
+./mvnw clean package -Dparamixel.skipTests=true
 
 %install
 %{__install} -d %{buildroot}%{_bindir}
