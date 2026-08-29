@@ -7,7 +7,7 @@
 %global _dracutdir %(pkg-config --variable=dracutdir dracut)
 
 Name: zfs
-Version: 2.4.3
+Version: 2.4.4
 Release: 1%{?dist}
 Summary: OpenZFS file system user utilities
 License: CDDL-1.0
